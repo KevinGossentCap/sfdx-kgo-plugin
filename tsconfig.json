@@ -3,7 +3,11 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./lib",
-    "importHelpers": true
+    "importHelpers": true,
+    "target": "ES2019",
+    "lib": [
+      "ES2019"
+    ],
   },
   "include": [
     "./src/**/*"
