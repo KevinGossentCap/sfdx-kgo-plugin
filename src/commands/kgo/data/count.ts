@@ -12,7 +12,7 @@ const formatTabColomn = {
 }
 
 export default class KgoDataCount extends SfdxCommand {
-  static description = 'describe the command here'
+  static description = 'retrieves record counts from REST API recordCount'
 
   // Comment this out if your command does not require an org username
   protected static requiresUsername = true
@@ -156,6 +156,6 @@ export default class KgoDataCount extends SfdxCommand {
     //   ]
     // })
 
-    return {result}
+    return result
   }
 }
