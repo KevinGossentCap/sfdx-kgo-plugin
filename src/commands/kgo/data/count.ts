@@ -30,18 +30,45 @@ export default class KgoDataCount extends SfdxCommand {
   public static result: SfdxResult = {
     tableColumnData: {
       columns: [
-        {key: 'name', label: 'Name'},
-        {key: 'count', label: 'Count'}
+        {key: 'Oname', label: 'sObject Name'},
+        {key: 'Ocount', label: 'Count'},
+        {key: 'Mname', label: 'Metadata type Name'},
+        {key: 'Mcount', label: 'Count'},
+        {key: 'Cname', label: 'Custom Setting Name'},
+        {key: 'Ccount', label: 'Count'},
+        {key: 'Uname', label: 'Uncounted sObject Name'},
+        {key: 'Ucount', label: 'Count'}
       ]
     },
     display() {
+      // {'Data Storage': [], 'Metadata type Storage': [], 'Custom Settings Storage': [], 'Not counted Storage': []}
+      let numSize = 0
       for (let elem of Object.keys(this.data)) {
-        if (this.data?.[elem]?.length) {
-          this.ux.log(elem)
-          this.ux.table(this.data[elem], this.tableColumnData)
-          this.ux.log('')
-        }
+        numSize = Math.max(numSize, this.data?.[elem]?.length)
       }
+      if (numSize) {
+        let outputResult = []
+        for (let i = 0; i < numSize; i++) {
+          outputResult.push({
+            Oname: this.data?.['Data Storage']?.[i]?.name,
+            Ocount: this.data?.['Data Storage']?.[i]?.count,
+            Mname: this.data?.['Metadata type Storage']?.[i]?.name,
+            Mcount: this.data?.['Metadata type Storage']?.[i]?.count,
+            Cname: this.data?.['Custom Settings Storage']?.[i]?.name,
+            Ccount: this.data?.['Custom Settings Storage']?.[i]?.count,
+            Uname: this.data?.['Not counted Storage']?.[i]?.name,
+            Ucount: this.data?.['Not counted Storage']?.[i]?.count
+          })
+        }
+        this.ux.table(outputResult, this.tableColumnData)
+      }
+      // for (let elem of Object.keys(this.data)) {
+      //   if (this.data?.[elem]?.length) {
+      //     this.ux.log(elem)
+      //     this.ux.table(this.data[elem], this.tableColumnData)
+      //     this.ux.log('')
+      //   }
+      // }
     }
   }
 
