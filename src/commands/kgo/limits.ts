@@ -1,14 +1,14 @@
-import {SfdxCommand, flags, FlagsConfig} from '@salesforce/command'
+import {SfdxCommand, flags, FlagsConfig, SfdxResult} from '@salesforce/command'
 import {AnyJson} from '@salesforce/ts-types'
 
-const formatTabColomn = {
-  columns: [
-    {key: 'name', label: 'Name'},
-    {key: 'rate', label: 'Percent used'},
-    {key: 'max', label: 'Max usable'},
-    {key: 'left', label: 'Remaining'}
-  ]
-}
+// const formatTabColomn = {
+//   columns: [
+//     {key: 'name', label: 'Name'},
+//     {key: 'rate', label: 'Percent used'},
+//     {key: 'max', label: 'Max usable'},
+//     {key: 'left', label: 'Remaining'}
+//   ]
+// }
 
 export default class KgoLimits extends SfdxCommand {
   static description = 'get filtered and formated limits from API'
@@ -24,6 +24,17 @@ export default class KgoLimits extends SfdxCommand {
 
   protected static flagsConfig: FlagsConfig = {
     limits: flags.array({description: 'optionnal list of limits to show ; comma seperated', char: 'l', required: false, delimiter: ','})
+  }
+
+  public static result: SfdxResult = {
+    tableColumnData: {
+      columns: [
+        {key: 'name', label: 'Name'},
+        {key: 'rate', label: 'Percent used'},
+        {key: 'max', label: 'Max usable'},
+        {key: 'left', label: 'Remaining'}
+      ]
+    }
   }
 
   public async run(): Promise<AnyJson> {
@@ -53,7 +64,7 @@ export default class KgoLimits extends SfdxCommand {
 
     // let result = []
     // this.ux.logJson(filteredLimitResult)
-    this.ux.table(filteredLimitResult, formatTabColomn)
+    // this.ux.table(filteredLimitResult, formatTabColomn)
 
     return filteredLimitResult
   }
