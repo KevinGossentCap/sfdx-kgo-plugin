@@ -54,7 +54,7 @@ export default class KgoDataCount extends SfdxCommand {
     const conn = this.org.getConnection()
     conn.cache.clear()
     const queryEntityDefinition = 'SELECT QualifiedApiName, IsCustomSetting, IsLayoutable, KeyPrefix FROM EntityDefinition WHERE IsCustomizable=true AND IsDeprecatedAndHidden=false AND IsIdEnabled=true'
-    const excludeDataCountList: string[] = ['CollaborationGroupRecord', 'FeedItem', 'OpportunityLineItem', 'AccountContactRelation', 'User', 'OpportunityContactRole', 'Product2', 'PricebookEntry']
+    const excludeDataCountList: string[] = ['CollaborationGroupRecord', 'FeedItem', 'OpportunityLineItem', 'AccountContactRelation', 'User', 'OpportunityContactRole', 'Product2', 'Pricebook2', 'PricebookEntry', 'Asset']
 
     // The type we are querying for
     interface EntityDefinition {
