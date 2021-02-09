@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "KGO",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
@@ -58,6 +58,7 @@
   },
   "repository": "KevinGossentCap/sfdx-kgo-plugin",
   "scripts": {
+    "build": "rimraf lib && tsc -b",
     "lint": "tslint --project . --config tslint.json --format stylish",
     "postpack": "rimraf oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",
