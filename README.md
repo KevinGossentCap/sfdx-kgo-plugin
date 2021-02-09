@@ -22,7 +22,7 @@ $ npm install -g sfdx-kgo-plugin
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.8 win32-x64 node-v14.15.4
+sfdx-kgo-plugin/0.0.9 win32-x64 node-v14.15.4
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -57,7 +57,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.8/src/commands/kgo/data/count.ts)_
+_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.9/src/commands/kgo/data/count.ts)_
 
 ## `sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -86,7 +86,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.8/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.9/src/commands/kgo/limits.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
