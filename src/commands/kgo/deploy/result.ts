@@ -17,7 +17,7 @@ export default class KgoDeployResult extends SfdxCommand {
   // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
   protected static requiresProject = false
 
-  protected static tableColumnData = ['index', 'name', 'methodName', 'message', 'stackTrace'];
+  protected static tableColumnData = ['index', 'name', 'methodName', 'stackTrace', 'message'];
 
   public static result: SfdxResult = {
     tableColumnData: {
@@ -25,8 +25,8 @@ export default class KgoDeployResult extends SfdxCommand {
         {key: 'index'},
         {key: 'name'},
         {key: 'methodName'},
-        {key: 'message'},
-        {key: 'stackTrace'}
+        {key: 'stackTrace'},
+        {key: 'message'}
       ],
     },
     display() {
