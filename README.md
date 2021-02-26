@@ -22,7 +22,7 @@ $ npm install -g sfdx-kgo-plugin
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.10 win32-x64 node-v14.15.4
+sfdx-kgo-plugin/0.0.10 win32-x64 node-v14.15.5
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND

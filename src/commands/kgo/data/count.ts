@@ -78,6 +78,7 @@ export default class KgoDataCount extends SfdxCommand {
     // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
     const conn = this.org.getConnection()
     conn.cache.clear()
+    // IsDeprecatedAndHidden=false AND IsIdEnabled=true AND IsLayoutable=true AND IsEverCreatable=true AND IsCustomizable=true
     const queryEntityDefinition = 'SELECT QualifiedApiName, IsCustomSetting, IsLayoutable, KeyPrefix FROM EntityDefinition WHERE IsCustomizable=true AND IsDeprecatedAndHidden=false AND IsIdEnabled=true'
     const excludeDataCountList: string[] = ['CollaborationGroupRecord', 'FeedItem', 'OpportunityLineItem', 'AccountContactRelation', 'User', 'OpportunityContactRole', 'Product2', 'Pricebook2', 'PricebookEntry', 'Asset']
 
