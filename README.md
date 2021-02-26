@@ -22,7 +22,7 @@ $ npm install -g sfdx-kgo-plugin
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.12 win32-x64 node-v14.16.0
+sfdx-kgo-plugin/0.0.13 win32-x64 node-v14.16.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -30,11 +30,11 @@ USAGE
 ```
 <!-- usagestop -->
 <!-- commands -->
-* [`sfdx kgo:data:count [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodatacount--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodatacount--e-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodeployresult--i-id--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgolimits--l-array--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
-## `sfdx kgo:data:count [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
 retrieves record counts from REST API recordCount
 
@@ -42,10 +42,13 @@ retrieves record counts from REST API recordCount
 retrieves record counts from REST API recordCount
 
 USAGE
-  $ sfdx kgo:data:count [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  $ sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
+  -e, --entity-where-clause=entity-where-clause                                     optionnal constraints to add to the
+                                                                                    entityDefenition query where clause
+
   -u, --targetusername=targetusername                                               username or alias for the target
                                                                                     org; overrides default target org
 
@@ -56,9 +59,18 @@ OPTIONS
 
   --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
                                                                                     this command invocation
+
+EXAMPLES
+  $ sfdx kgo:data:count --targetusername myOrg@example.com
+       will give you the record count it can find from recordCount API for the most number of objects in the ORG
+    
+  $ sfdx kgo:data:count --targetusername myOrg@example.com --entity-where-clause 'IsLayoutable=true AND 
+  IsEverCreatable=true AND IsCustomizable=true'
+       will give you the record count it can find from recordCount API with object list restriction usefull msot of the 
+  time
 ```
 
-_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.12/src/commands/kgo/data/count.ts)_
+_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.13/src/commands/kgo/data/count.ts)_
 
 ## `sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -89,7 +101,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.12/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.13/src/commands/kgo/deploy/result.ts)_
 
 ## `sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -118,7 +130,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.12/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.13/src/commands/kgo/limits.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
