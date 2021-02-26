@@ -1,4 +1,4 @@
-import {SfdxCommand, SfdxResult} from '@salesforce/command'
+import {flags, FlagsConfig, SfdxCommand, SfdxResult} from '@salesforce/command'
 // import {flags, SfdxCommand} from '@salesforce/command'
 // import {Messages, SfdxError} from '@salesforce/core';
 import {AnyJson} from '@salesforce/ts-types'
@@ -6,6 +6,15 @@ import * as _ from 'lodash'
 
 export default class KgoDataCount extends SfdxCommand {
   static description = 'retrieves record counts from REST API recordCount'
+
+  static examples = [
+    `$ sfdx kgo:data:count --targetusername myOrg@example.com
+    will give you the record count it can find from recordCount API for the most number of objects in the ORG
+    `,
+    `$ sfdx kgo:data:count --targetusername myOrg@example.com --entity-where-clause 'IsLayoutable=true AND IsEverCreatable=true AND IsCustomizable=true'
+    will give you the record count it can find from recordCount API with object list restriction usefull msot of the time
+    `
+  ];
 
   // Comment this out if your command does not require an org username
   protected static requiresUsername = true
@@ -15,6 +24,10 @@ export default class KgoDataCount extends SfdxCommand {
 
   // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
   protected static requiresProject = false
+
+  protected static flagsConfig: FlagsConfig = {
+    'entity-where-clause': flags.string({description: 'optionnal constraints to add to the entityDefenition query where clause', char: 'e', required: false})
+  }
 
   treatResultType(result, strType: string, objectsToCount: string[], objectRecordMap) {
     let tmpArray = []
@@ -79,7 +92,9 @@ export default class KgoDataCount extends SfdxCommand {
     const conn = this.org.getConnection()
     conn.cache.clear()
     // keyprefix<>'' AND IsDeprecatedAndHidden=false AND IsIdEnabled=true AND IsLayoutable=true AND IsEverCreatable=true AND IsCustomizable=true
-    const queryEntityDefinition = 'SELECT QualifiedApiName, IsCustomSetting, IsLayoutable, KeyPrefix FROM EntityDefinition WHERE KeyPrefix<>\'\' AND IsCustomizable=true AND IsDeprecatedAndHidden=false AND IsIdEnabled=true'
+    let queryEntityDefinition = 'SELECT QualifiedApiName, IsCustomSetting, IsLayoutable, KeyPrefix FROM EntityDefinition WHERE KeyPrefix<>\'\' AND IsDeprecatedAndHidden=false AND IsIdEnabled=true'
+
+    if (this.flags?.['entity-where-clause']?.length) queryEntityDefinition += ' AND ' + this.flags['entity-where-clause']
     const excludeDataCountList: string[] = ['CollaborationGroupRecord', 'FeedItem', 'OpportunityLineItem', 'AccountContactRelation', 'User', 'OpportunityContactRole', 'Product2', 'Pricebook2', 'PricebookEntry', 'Asset']
 
     // The type we are querying for
