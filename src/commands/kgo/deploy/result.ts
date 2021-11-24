@@ -20,17 +20,34 @@ export default class KgoDeployResult extends SfdxCommand {
   protected static tableColumnData = ['index', 'name', 'methodName', 'stackTrace', 'message'];
 
   public static result: SfdxResult = {
-    tableColumnData: {
-      columns: [
-        {key: 'index'},
-        {key: 'name'},
-        {key: 'methodName'},
-        {key: 'stackTrace'},
-        {key: 'message'}
-      ],
-    },
     display() {
-      this.ux.table(this.data as unknown as any[], this.tableColumnData)
+      this.ux.log('Status', this.data?.['status'])
+      this.ux.log('Component Failures', this.data?.['numberComponentErrors'])
+      this.ux.log('Apex testClass Failures', this.data?.['numberTestErrors'])
+      this.ux.log('ApexClass test Coverage', this.data?.['codeCoverage'])
+      this.ux.log('Flow test Coverage', this.data?.['flowCoverage'])
+      if (this.data?.['componentFailures']) {
+        this.ux.table(this.data?.['componentFailures'] as unknown as any[], {
+          columns: [
+            {key: 'componentType'},
+            {key: 'problemType'},
+            {key: 'fullName'},
+            {key: 'fileName'},
+            {key: 'problem'}
+          ],
+        })
+      }
+      if (this.data?.['apexFailures']) {
+        this.ux.table(this.data?.['apexFailures'] as unknown as any[], {
+          columns: [
+            {key: 'index'},
+            {key: 'name'},
+            {key: 'methodName'},
+            {key: 'stackTrace'},
+            {key: 'message'}
+          ],
+        })
+      }
     }
   }
 
@@ -46,12 +63,57 @@ export default class KgoDeployResult extends SfdxCommand {
   public async run(): Promise<AnyJson> {
     const conn = this.org.getConnection()
     let result = await conn.metadata.checkDeployStatus(this.flags.jobid, true)
-    // this.ux.log(result.status)
-    // this.ux.styledJSON(result?.details?.['runTestResult']?.failures)
-    let failures: AnyJson = result?.details?.['runTestResult']?.failures
-    for (let index = 0; index < Object.keys(failures).length; index++) {
-      failures[index]["index"] = index + 1
+    // this.ux.styledJSON(result)
+    let output: AnyJson = {}
+    output.status = result.status
+    output.numberComponentErrors = result.numberComponentErrors
+    if (output.numberComponentErrors > 0) {
+      if (output.numberComponentErrors == 1){
+        output.componentFailures = []
+        output.componentFailures.push(result?.details?.['componentFailures'])
+      } else {
+        output.componentFailures = result?.details?.['componentFailures']
+      }
     }
-    return failures
+    
+    output.numberTestErrors = result.numberTestErrors
+    if (output.numberTestErrors > 0) {
+      output.apexFailures = result?.details?.['runTestResult']?.['failures']
+      for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
+        output.apexFailures[index]["index"] = index + 1
+      }
+    }
+    
+    if (result?.details?.['runTestResult']?.['codeCoverage']) {
+      const reducer = (previousValue, currentValue) => {
+        previousValue.numLocations += parseInt(currentValue.numLocations)
+        previousValue.numLocationsNotCovered += parseInt(currentValue.numLocationsNotCovered)
+        return previousValue
+      }
+      
+      let reduced = result?.details?.['runTestResult']?.['codeCoverage'].reduce(reducer,{numLocations: 0, numLocationsNotCovered: 0})
+      
+      output.codeCoverage = (100-100*reduced.numLocationsNotCovered/reduced.numLocations)
+    } else {
+      output.codeCoverage = 'N/A'
+    }
+    
+    if (result?.details?.['runTestResult']?.['flowCoverage']) {
+      const reducer = (previousValue, currentValue) => {
+        previousValue.numFlow += 1
+        if (currentValue.numElements != currentValue.numElementsNotCovered) {
+          previousValue.numFlowCovered += 1
+        }
+        return previousValue
+      }
+      
+      let reduced = result?.details?.['runTestResult']?.['flowCoverage'].reduce(reducer,{numFlow: 0, numFlowCovered: 0})
+      
+      output.flowCoverage = (100*reduced.numFlowCovered/reduced.numFlow)
+    } else {
+      output.flowCoverage = 'N/A'
+    }
+    
+    return output
   }
 }
