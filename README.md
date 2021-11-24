@@ -22,7 +22,7 @@ $ npm install -g sfdx-kgo-plugin
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.15 win32-x64 node-v16.13.0
+sfdx-kgo-plugin/0.0.16 win32-x64 node-v16.13.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -39,8 +39,6 @@ USAGE
 retrieves record counts from REST API recordCount
 
 ```
-retrieves record counts from REST API recordCount
-
 USAGE
   $ sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
@@ -70,15 +68,13 @@ EXAMPLES
   time
 ```
 
-_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.15/src/commands/kgo/data/count.ts)_
+_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/data/count.ts)_
 
 ## `sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
 fast get deploy result, statistics and error list
 
 ```
-fast get deploy result, statistics and error list
-
 USAGE
   $ sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
@@ -101,15 +97,13 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.15/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/deploy/result.ts)_
 
 ## `sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
 get filtered and formated limits from API
 
 ```
-get filtered and formated limits from API
-
 USAGE
   $ sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
@@ -130,7 +124,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.15/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/limits.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin

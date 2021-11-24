@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "KGO",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
@@ -21,10 +21,10 @@
     "@salesforce/dev-scripts": "^0",
     "@salesforce/prettier-config": "^0",
     "@salesforce/ts-sinon": "^1",
+    "@tsconfig/node16": "1",
     "@types/chai": "^4",
     "@types/jsforce": "^1.9.29",
     "@types/mocha": "^8",
-    "@tsconfig/node16": "1",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "chai": "^4",
