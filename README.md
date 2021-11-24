@@ -22,7 +22,7 @@ $ npm install -g sfdx-kgo-plugin
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.16 win32-x64 node-v16.13.0
+sfdx-kgo-plugin/0.0.17 win32-x64 node-v16.13.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -31,7 +31,7 @@ USAGE
 <!-- usagestop -->
 <!-- commands -->
 * [`sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodatacount--e-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-* [`sfdx kgo:deploy:listApexCoverage [FILE]`](#sfdx-kgodeploylistapexcoverage-file)
+* [`sfdx kgo:deploy:listApexCoverage -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodeploylistapexcoverage--i-id--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodeployresult--i-id--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgolimits--l-array--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
@@ -69,23 +69,36 @@ EXAMPLES
   time
 ```
 
-_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/data/count.ts)_
+_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.17/src/commands/kgo/data/count.ts)_
 
-## `sfdx kgo:deploy:listApexCoverage [FILE]`
+## `sfdx kgo:deploy:listApexCoverage -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
-describe the command here
+fast get deploy coverage details
 
 ```
 USAGE
-  $ sfdx kgo:deploy:listApexCoverage [FILE]
+  $ sfdx kgo:deploy:listApexCoverage -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -i, --jobid=jobid                                                                 (required) job ID of the deployment
+                                                                                    you want to check; defaults to your
+                                                                                    most recent CLI deployment if not
+                                                                                    specified
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
 ```
 
-_See code: [src/commands/kgo/deploy/listApexCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/deploy/listApexCoverage.ts)_
+_See code: [src/commands/kgo/deploy/listApexCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.17/src/commands/kgo/deploy/listApexCoverage.ts)_
 
 ## `sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -114,7 +127,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.17/src/commands/kgo/deploy/result.ts)_
 
 ## `sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -141,7 +154,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.16/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.17/src/commands/kgo/limits.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
