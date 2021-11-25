@@ -1,6 +1,7 @@
 import {SfdxCommand, flags, FlagsConfig, SfdxResult} from '@salesforce/command'
 import {Messages} from '@salesforce/core'
 import {AnyJson} from '@salesforce/ts-types'
+declare var __dirname;
 
 Messages.importMessagesDirectory(__dirname);
 const messages: Messages = Messages.loadMessages('sfdx-kgo-plugin', 'mdapi_deploy');
