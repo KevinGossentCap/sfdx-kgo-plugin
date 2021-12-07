@@ -80,7 +80,7 @@ export default class KgoDeployResult extends SfdxCommand {
       // for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
       //   output.apexFailures[index]["index"] = index + 1
       // }
-      (Array<AnyJson>(output.apexFailures)).map((elem, ind) => {
+      output.apexFailures = (Array<AnyJson>(output.apexFailures)).map((elem, ind) => {
         elem["index"] = ind + 1
         return elem
       })
