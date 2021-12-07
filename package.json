@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "KGO",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
