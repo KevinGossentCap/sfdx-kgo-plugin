@@ -27,7 +27,7 @@ export default class KgoDeployResult extends SfdxCommand {
       this.ux.log('Apex testClass Failures', this.data?.['numberTestErrors'])
       this.ux.log('ApexClass test Coverage', this.data?.['codeCoverage'])
       this.ux.log('Flow test Coverage', this.data?.['flowCoverage'])
-      if (this.data?.['componentFailures']) {
+      if (this.data?.['numberComponentErrors'] > 0) {
         this.ux.table(this.data?.['componentFailures'] as unknown as any[], {
           columns: [
             {key: 'componentType'},
@@ -38,7 +38,7 @@ export default class KgoDeployResult extends SfdxCommand {
           ],
         })
       }
-      if (this.data?.['apexFailures']) {
+      if (this.data?.['numberTestErrors'] > 0) {
         this.ux.table(this.data?.['apexFailures'] as unknown as any[], {
           columns: [
             {key: 'index'},
@@ -69,20 +69,21 @@ export default class KgoDeployResult extends SfdxCommand {
     output.status = result.status
     output.numberComponentErrors = result.numberComponentErrors
     if (output.numberComponentErrors > 0) {
-      if (output.numberComponentErrors == 1){
-        output.componentFailures = []
-        output.componentFailures.push(result?.details?.['componentFailures'])
-      } else {
-        output.componentFailures = result?.details?.['componentFailures']
-      }
+      output.componentFailures = []
+      output.componentFailures.push(result?.details?.['componentFailures'])
     }
     
     output.numberTestErrors = result.numberTestErrors
     if (output.numberTestErrors > 0) {
-      output.apexFailures = result?.details?.['runTestResult']?.['failures']
-      for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
-        output.apexFailures[index]["index"] = index + 1
-      }
+      output.apexFailures = []
+      output.apexFailures.push(result?.details?.['runTestResult']?.['failures']);
+      // for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
+      //   output.apexFailures[index]["index"] = index + 1
+      // }
+      (Array<AnyJson>(output.apexFailures)).map((elem, ind) => {
+        elem["index"] = ind + 1
+        return elem
+      })
     }
     
     if (result?.details?.['runTestResult']?.['codeCoverage']) {
