@@ -77,13 +77,13 @@ export default class KgoDeployResult extends SfdxCommand {
     if (output.numberTestErrors > 0) {
       output.apexFailures = []
       output.apexFailures.push(result?.details?.['runTestResult']?.['failures']);
-      // for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
-      //   output.apexFailures[index]["index"] = index + 1
-      // }
-      output.apexFailures = (Array<AnyJson>(output.apexFailures)).map((elem, ind) => {
-        elem["index"] = ind + 1
-        return elem
-      })
+      for (let index = 0; index < Object.keys(output.apexFailures).length; index++) {
+        output.apexFailures[index]["index"] = index + 1
+      }
+      // output.apexFailures = (Array<AnyJson>(output.apexFailures)).map((elem, ind) => {
+      //   elem["index"] = ind + 1
+      //   return elem
+      // })
     }
     
     if (result?.details?.['runTestResult']?.['codeCoverage']) {
