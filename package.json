@@ -63,7 +63,9 @@
     "sfdx-plugin"
   ],
   "license": "MIT",
+  "main": "lib/index.js",
   "oclif": {
+    "additionalHelpFlags": ["-h"],
     "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
