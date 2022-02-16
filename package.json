@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "author": "KGO",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
@@ -65,7 +65,9 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "additionalHelpFlags": ["-h"],
+    "additionalHelpFlags": [
+      "-h"
+    ],
     "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
