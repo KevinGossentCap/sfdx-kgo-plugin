@@ -17,10 +17,31 @@ export default class KgoDeployListApexCoverage extends SfdxCommand {
 
   // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
   protected static requiresProject = false
-
+  
   public static result: SfdxResult = {
     display() {
+      this.ux.log('ApexClass test Coverage')
       this.ux.table(this.data?.['codeCoverage'] as unknown as any[], {
+        columns: [
+          {key: 'type'},
+          {key: 'name'},
+          {key: 'numLocations'},
+          {key: 'numLocationsNotCovered'},
+          {key: 'pctCoverage'}
+        ],
+      })
+      this.ux.log('\nDeployed Flow test Coverage')
+      this.ux.table(this.data?.['flowCoverage']?.['deployed'] as unknown as any[], {
+        columns: [
+          {key: 'type'},
+          {key: 'name'},
+          {key: 'numLocations'},
+          {key: 'numLocationsNotCovered'},
+          {key: 'pctCoverage'}
+        ],
+      })
+      this.ux.log('\nOthers Flow test Coverage')
+      this.ux.table(this.data?.['flowCoverage']?.['others'] as unknown as any[], {
         columns: [
           {key: 'type'},
           {key: 'name'},
@@ -143,6 +164,43 @@ export default class KgoDeployListApexCoverage extends SfdxCommand {
       }
     } else {
       output.codeCoverage = 'N/A'
+    }
+    
+    if (result?.details?.['runTestResult']?.['flowCoverage']) {
+    
+      const flowReducer = (previousValue, currentValue) => {
+        if (currentValue.componentType = 'Flow') {
+          previousValue.push(currentValue.fullName)
+        }
+        return previousValue
+      }
+      
+      let lstDeployedFlows = result?.details?.['componentSuccesses']?.reduce(flowReducer,[])
+      
+      const reducer = (previousValue, currentValue) => {
+        let unitCov: AnyJson = {}
+        unitCov.type = currentValue.processType
+        unitCov.name = currentValue.flowName
+        unitCov.numLocations = parseInt(currentValue.numElements)
+        unitCov.numLocationsNotCovered = parseInt(currentValue.numElementsNotCovered)
+        unitCov.pctCoverage = (100 - 100 * unitCov.numLocationsNotCovered / unitCov.numLocations)
+        
+        if (lstDeployedFlows.includes(currentValue.flowName)) {
+          previousValue.deployed.push(unitCov)
+        } else {
+          previousValue.others.push(unitCov)
+        }
+        return previousValue
+      }
+      
+      let reduced = result?.details?.['runTestResult']?.['flowCoverage'].reduce(reducer,{deployed: [], others: []})
+      
+      reduced.deployed = reduced.deployed.sort(dynamicSortMultiple("pctCoverage", "-numElements"))
+      reduced.others = reduced.others.sort(dynamicSortMultiple("pctCoverage", "-numElements"))
+      
+      output.flowCoverage = reduced
+    } else {
+      output.flowCoverage = 'N/A'
     }
 
     return output
