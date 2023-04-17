@@ -91,6 +91,7 @@
     "docs": "sf-docs",
     "format": "sf-format",
     "lint": "sf-lint",
+    "prepare": "husky install",
     "postinstall": "yarn install",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "yarn lint",
