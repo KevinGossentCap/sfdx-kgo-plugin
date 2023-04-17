@@ -1,0 +1,218 @@
+{
+  "ActiveScratchOrgs": {
+    "Max": 40,
+    "Remaining": 40
+  },
+  "AnalyticsExternalDataSizeMB": {
+    "Max": 40960,
+    "Remaining": 40960
+  },
+  "ConcurrentAsyncGetReportInstances": {
+    "Max": 200,
+    "Remaining": 200
+  },
+  "ConcurrentEinsteinDataInsightsStoryCreation": {
+    "Max": 5,
+    "Remaining": 5
+  },
+  "ConcurrentEinsteinDiscoveryStoryCreation": {
+    "Max": 2,
+    "Remaining": 2
+  },
+  "ConcurrentSyncReportRuns": {
+    "Max": 20,
+    "Remaining": 20
+  },
+  "DailyAnalyticsDataflowJobExecutions": {
+    "Max": 60,
+    "Remaining": 60
+  },
+  "DailyAnalyticsUploadedFilesSizeMB": {
+    "Max": 51200,
+    "Remaining": 51200
+  },
+  "DailyApiRequests": {
+    "Max": 683000,
+    "Remaining": 681829
+  },
+  "DailyAsyncApexExecutions": {
+    "Max": 250000,
+    "Remaining": 249743
+  },
+  "DailyAsyncApexTests": {
+    "Max": 24780,
+    "Remaining": 24780
+  },
+  "DailyBulkApiBatches": {
+    "Max": 15000,
+    "Remaining": 15000
+  },
+  "DailyBulkV2QueryFileStorageMB": {
+    "Max": 976562,
+    "Remaining": 976562
+  },
+  "DailyBulkV2QueryJobs": {
+    "Max": 10000,
+    "Remaining": 10000
+  },
+  "DailyDeliveredPlatformEvents": {
+    "Max": 25000,
+    "Remaining": 25000
+  },
+  "DailyDurableGenericStreamingApiEvents": {
+    "Max": 200000,
+    "Remaining": 199925
+  },
+  "DailyDurableStreamingApiEvents": {
+    "Max": 200000,
+    "Remaining": 200000
+  },
+  "DailyEinsteinDataInsightsStoryCreation": {
+    "Max": 1000,
+    "Remaining": 1000
+  },
+  "DailyEinsteinDiscoveryOptimizationJobRuns": {
+    "Max": 25,
+    "Remaining": 25
+  },
+  "DailyEinsteinDiscoveryPredictAPICalls": {
+    "Max": 50000,
+    "Remaining": 50000
+  },
+  "DailyEinsteinDiscoveryPredictionsByCDC": {
+    "Max": 500000,
+    "Remaining": 500000
+  },
+  "DailyEinsteinDiscoveryStoryCreation": {
+    "Max": 100,
+    "Remaining": 100
+  },
+  "DailyFieldServiceAppointmentOptimization": {
+    "Max": 50000,
+    "Remaining": 50000
+  },
+  "DailyFunctionsApiCallLimit": {
+    "Max": 50000,
+    "Remaining": 50000
+  },
+  "DailyGenericStreamingApiEvents": {
+    "Max": 10000,
+    "Remaining": 10000
+  },
+  "DailyScratchOrgs": {
+    "Max": 80,
+    "Remaining": 80
+  },
+  "DailyStandardVolumePlatformEvents": {
+    "Max": 25000,
+    "Remaining": 25000
+  },
+  "DailyStreamingApiEvents": {
+    "Max": 200000,
+    "Remaining": 200000
+  },
+  "DailyWorkflowEmails": {
+    "Max": 728000,
+    "Remaining": 727977
+  },
+  "DataStorageMB": {
+    "Max": 23530,
+    "Remaining": 22292
+  },
+  "DurableStreamingApiConcurrentClients": {
+    "Max": 1000,
+    "Remaining": 999
+  },
+  "FileStorageMB": {
+    "Max": 1206676,
+    "Remaining": 1203629
+  },
+  "HourlyAsyncReportRuns": {
+    "Max": 1200,
+    "Remaining": 1200
+  },
+  "HourlyDashboardRefreshes": {
+    "Max": 200,
+    "Remaining": 200
+  },
+  "HourlyDashboardResults": {
+    "Max": 5000,
+    "Remaining": 5000
+  },
+  "HourlyDashboardStatuses": {
+    "Max": 999999999,
+    "Remaining": 999999999
+  },
+  "HourlyLongTermIdMapping": {
+    "Max": 100000,
+    "Remaining": 100000
+  },
+  "HourlyManagedContentPublicRequests": {
+    "Max": 50000,
+    "Remaining": 50000
+  },
+  "HourlyODataCallout": {
+    "Max": 20000,
+    "Remaining": 20000
+  },
+  "HourlyPublishedPlatformEvents": {
+    "Max": 250000,
+    "Remaining": 250000
+  },
+  "HourlyPublishedStandardVolumePlatformEvents": {
+    "Max": 100000,
+    "Remaining": 100000
+  },
+  "HourlyShortTermIdMapping": {
+    "Max": 100000,
+    "Remaining": 100000
+  },
+  "HourlySyncReportRuns": {
+    "Max": 500,
+    "Remaining": 500
+  },
+  "HourlyTimeBasedWorkflow": {
+    "Max": 1000,
+    "Remaining": 1000
+  },
+  "MassEmail": {
+    "Max": 5000,
+    "Remaining": 5000
+  },
+  "MonthlyEinsteinDiscoveryStoryCreation": {
+    "Max": 500,
+    "Remaining": 500
+  },
+  "MonthlyPlatformEventsUsageEntitlement": {
+    "Max": 750000,
+    "Remaining": 749986
+  },
+  "Package2VersionCreates": {
+    "Max": 80,
+    "Remaining": 80
+  },
+  "Package2VersionCreatesWithoutValidation": {
+    "Max": 500,
+    "Remaining": 500
+  },
+  "PermissionSets": {
+    "Max": 1500,
+    "Remaining": 1419,
+    "CreateCustom": {
+      "Max": 1000,
+      "Remaining": 981
+    }
+  },
+  "PrivateConnectOutboundCalloutHourlyLimitMB": {
+    "Max": 0,
+    "Remaining": 0
+  },
+  "SingleEmail": {
+    "Max": 5000,
+    "Remaining": 5000
+  },
+  "StreamingApiConcurrentClients": {
+    "Max": 1000,
+    "Remaining": 1000
+  }
+}

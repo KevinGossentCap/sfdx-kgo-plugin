@@ -1,0 +1,33 @@
+{
+  "checkOnly": true,
+  "completedDate": "2023-03-31T16:18:55.000Z",
+  "createdBy": "0057Q0000032Gc7",
+  "createdByName": "Robot COPADO",
+  "createdDate": "2023-03-31T16:11:50.000Z",
+  "details": {
+    "componentSuccesses": [],
+    "runTestResult": {
+      "codeCoverage": [],
+      "flowCoverage": [],
+      "numFailures": "0",
+      "numTestsRun": "25",
+      "successes": [],
+      "totalTime": "159022.0"
+    }
+  },
+  "done": true,
+  "id": "0Af7Q00000S1i8xSAB",
+  "ignoreWarnings": true,
+  "lastModifiedDate": "2023-03-31T16:18:55.000Z",
+  "numberComponentErrors": 0,
+  "numberComponentsDeployed": 101,
+  "numberComponentsTotal": 101,
+  "numberTestErrors": 0,
+  "numberTestsCompleted": 25,
+  "numberTestsTotal": 25,
+  "rollbackOnError": true,
+  "runTestsEnabled": true,
+  "startDate": "2023-03-31T16:11:51.000Z",
+  "status": "Succeeded",
+  "success": true
+}

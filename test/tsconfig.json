@@ -1,4 +1,10 @@
 {
-  "extends": "../tsconfig"
+  "extends": "@salesforce/dev-config/tsconfig-test",
+  "include": ["./**/*.ts"],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
 }
-

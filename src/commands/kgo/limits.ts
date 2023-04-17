@@ -1,71 +1,104 @@
-import {SfdxCommand, flags, FlagsConfig, SfdxResult} from '@salesforce/command'
-import {AnyJson} from '@salesforce/ts-types'
+/* eslint-disable sf-plugin/no-missing-messages */
+import {SfCommand, Flags} from '@salesforce/sf-plugins-core';
+import {Messages} from '@salesforce/core';
+// import {DeployResult, DeployMessage, RunTestFailure} from 'jsforce/api/metadata';
+// import {LimitInfo} from 'jsforce'
+import {Interfaces} from '@oclif/core';
+import {OrganizationLimitsInfo} from 'jsforce/lib';
 
-// const formatTabColomn = {
-//   columns: [
-//     {key: 'name', label: 'Name'},
-//     {key: 'rate', label: 'Percent used'},
-//     {key: 'max', label: 'Max usable'},
-//     {key: 'left', label: 'Remaining'}
-//   ]
-// }
+Messages.importMessagesDirectory(__dirname);
+const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.limits');
 
-export default class KgoLimits extends SfdxCommand {
-  static description = 'get filtered and formated limits from API'
+// export type KgoLimitsResult = {
+//   path: string;
+// };
 
-  // Comment this out if your command does not require an org username
-  protected static requiresUsername = true
+declare type KgoLimitsResultElem = {
+  name: string;
+  rate: string;
+  max: number;
+  left: number;
+}
 
-  // Comment this out if your command does not support a hub org username
-  protected static supportsDevhubUsername = false
+declare type KgoLimitsResult = KgoLimitsResultElem[];
 
-  // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
-  protected static requiresProject = false
+const limitsColumns = {
+  name: {header: 'Name'},
+  rate: {header: 'Percent used'},
+  max: {header: 'Max usable'},
+  left: {header: 'Remaining'},
+};
 
-  protected static flagsConfig: FlagsConfig = {
-    limits: flags.array({description: 'optionnal list of limits to show ; comma seperated', char: 'l', required: false, delimiter: ','})
+export default class KgoLimits extends SfCommand<KgoLimitsResult> {
+  public static readonly summary = messages.getMessage('summary');
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessages('examples');
+
+  public static readonly flags = {
+    'target-org': Flags.requiredOrg({
+      summary: messages.getMessage('flags.target-org.summary'),
+      char: 'o',
+      required: true,
+      aliases: ['targetusername', 'u'],
+      deprecateAliases: true,
+    }),
+    limits: Flags.string({
+      summary: messages.getMessage('flags.limits.summary'),
+      char: 'l',
+      multiple: true,
+      delimiter: ',',
+    }),
+    debug: Flags.boolean({
+      summary: messages.getMessage('flags.debug.summary'),
+      hidden: true,
+    }),
+  };
+  private flags: Interfaces.InferredFlags<typeof KgoLimits.flags>;
+
+  public async run(): Promise<KgoLimitsResult> {
+    this.flags = (await this.parse(KgoLimits)).flags;
+
+    const apiLimits = await this.getResult();
+
+    if (this.flags.debug) this.logJson(apiLimits)
+
+    if (!this.flags.limits) {
+      this.flags.limits = Object.keys(apiLimits)
+    }
+
+    const output: KgoLimitsResult = [] as KgoLimitsResultElem[];
+
+    for (const iterator of this.flags.limits) {
+      const elem: KgoLimitsResultElem = {} as KgoLimitsResultElem;
+      elem.name = iterator
+      elem.max = apiLimits[iterator].Max
+      elem.left = apiLimits[iterator].Remaining
+      elem.rate = (100 * (elem.max - elem.left) / elem.max).toFixed(2) + ' %'
+      output.push(elem)
+    }
+
+    if (!this.flags.json) {
+      this.table(output, limitsColumns)
+    }
+
+    return output
+
+    // const name = this.flags.name ?? 'world';
+    // this.log(`hello ${name} from C:\\GitRepos\\sfdx-kgo-plugin-2\\sfdx-kgo-plugin\\src\\commands\\kgo\\limits.ts`);
+    // return {
+    //   path: 'C:\\GitRepos\\sfdx-kgo-plugin-2\\sfdx-kgo-plugin\\src\\commands\\kgo\\limits.ts',
+    // };
   }
 
-  public static result: SfdxResult = {
-    tableColumnData: {
-      columns: [
-        {key: 'name', label: 'Name'},
-        {key: 'rate', label: 'Percent used'},
-        {key: 'max', label: 'Max usable'},
-        {key: 'left', label: 'Remaining'}
-      ]
-    }
-  }
+  protected async getResult(): Promise<OrganizationLimitsInfo> {
+    // Get the connection to the org
+    // const result = await this.flags['target-org']
+    //   .getConnection(undefined)
+    //   .limits();
 
-  public async run(): Promise<AnyJson> {
-    // const {flags} = this.parse(KgoLimits)
-
-    // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
-    const conn = this.org.getConnection()
-    // conn.cache.clear()
-
-    let limitResult = await conn.limits()
-    let keysToOutput: string[]
-    if (this.flags.limits) {
-      keysToOutput = this.flags.limits
-    } else {
-      keysToOutput = Object.keys(limitResult)
-    }
-    let filteredLimitResult = []
-    keysToOutput.sort().forEach((elem: string) => {
-      const localElem = limitResult[elem]
-      filteredLimitResult.push({
-        'name': elem,
-        'rate': (100 * (localElem.Max - localElem.Remaining) / localElem.Max).toFixed(2) + ' %',
-        'max': localElem.Max,
-        'left': localElem.Remaining
-      })
-    })
-
-    // let result = []
-    // this.ux.logJson(filteredLimitResult)
-    // this.ux.table(filteredLimitResult, formatTabColomn)
-
-    return filteredLimitResult
+    // return result;
+    return this.flags['target-org']
+      .getConnection(undefined)
+      .limits();
   }
 }

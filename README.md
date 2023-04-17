@@ -1,185 +1,145 @@
-sfdx-kgo-plugin
-===============
+# sfdx-kgo-plugin
 
-SFDX plugin of great daily use tools
+[![NPM](https://img.shields.io/npm/v/sfdx-kgo-plugin.svg?label=sfdx-kgo-plugin)](https://www.npmjs.com/package/sfdx-kgo-plugin) [![Downloads/week](https://img.shields.io/npm/dw/sfdx-kgo-plugin.svg)](https://npmjs.org/package/sfdx-kgo-plugin) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/sfdx-kgo-plugin/main/LICENSE.txt)
 
-[![Version](https://img.shields.io/npm/v/sfdx-kgo-plugin.svg)](https://npmjs.org/package/sfdx-kgo-plugin)
-[![CircleCI](https://circleci.com/gh/KevinGossentCap/sfdx-kgo-plugin/tree/master.svg?style=shield)](https://circleci.com/gh/KevinGossentCap/sfdx-kgo-plugin/tree/master)
-[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/KevinGossentCap/sfdx-kgo-plugin?branch=master&svg=true)](https://ci.appveyor.com/project/heroku/sfdx-kgo-plugin/branch/master)
-[![Codecov](https://codecov.io/gh/KevinGossentCap/sfdx-kgo-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/KevinGossentCap/sfdx-kgo-plugin)
-[![Greenkeeper](https://badges.greenkeeper.io/KevinGossentCap/sfdx-kgo-plugin.svg)](https://greenkeeper.io/)
-[![Known Vulnerabilities](https://snyk.io/test/github/KevinGossentCap/sfdx-kgo-plugin/badge.svg)](https://snyk.io/test/github/KevinGossentCap/sfdx-kgo-plugin)
-[![Downloads/week](https://img.shields.io/npm/dw/sfdx-kgo-plugin.svg)](https://npmjs.org/package/sfdx-kgo-plugin)
-[![License](https://img.shields.io/npm/l/sfdx-kgo-plugin.svg)](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/master/package.json)
+## Using the template
 
-<!-- toc -->
-* [Debugging your plugin](#debugging-your-plugin)
-<!-- tocstop -->
-<!-- install -->
-<!-- usage -->
-```sh-session
-$ npm install -g sfdx-kgo-plugin
-$ sfdx COMMAND
-running command...
-$ sfdx (-v|--version|version)
-sfdx-kgo-plugin/0.0.25 win32-x64 node-v18.15.0
-$ sfdx --help [COMMAND]
-USAGE
-  $ sfdx COMMAND
-...
+This repository provides a template for creating a plugin for the Salesforce CLI. To convert this template to a working plugin:
+
+1. Please get in touch with the Platform CLI team. We want to help you develop your plugin.
+2. Generate your plugin:
+
+   ```
+   sf plugins install dev
+   sf dev generate plugin
+
+   git init -b main
+   git add . && git commit -m "chore: initial commit"
+   ```
+
+3. Create your plugin's repo in the salesforcecli github org
+4. When you're ready, replace the contents of this README with the information you want.
+
+## Learn about `sf` plugins
+
+Salesforce CLI plugins are based on the [oclif plugin framework](<(https://oclif.io/docs/introduction.html)>). Read the [plugin developer guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_architecture_sf_cli.htm) to learn about Salesforce CLI plugin development.
+
+This repository contains a lot of additional scripts and tools to help with general Salesforce node development and enforce coding standards. You should familiarize yourself with some of the [node developer packages](#tooling) used by Salesforce. 
+
+Additionally, there are some additional tests that the Salesforce CLI will enforce if this plugin is ever bundled with the CLI. These test are included by default under the `posttest` script and it is required to keep these tests active in your plugin if you plan to have it bundled.
+
+### Tooling
+
+- [@salesforce/core](https://github.com/forcedotcom/sfdx-core)
+- [@salesforce/kit](https://github.com/forcedotcom/kit)
+- [@salesforce/sf-plugins-core](https://github.com/salesforcecli/sf-plugins-core)
+- [@salesforce/ts-types](https://github.com/forcedotcom/ts-types)
+- [@salesforce/ts-sinon](https://github.com/forcedotcom/ts-sinon)
+- [@salesforce/dev-config](https://github.com/forcedotcom/dev-config)
+- [@salesforce/dev-scripts](https://github.com/forcedotcom/dev-scripts)
+
+### Hooks
+
+For cross clouds commands, e.g. `sf env list`, we utilize [oclif hooks](https://oclif.io/docs/hooks) to get the relevant information from installed plugins.
+
+This plugin includes sample hooks in the [src/hooks directory](src/hooks). You'll just need to add the appropriate logic. You can also delete any of the hooks if they aren't required for your plugin.
+
+# Everything past here is only a suggestion as to what should be in your specific plugin's description
+
+This plugin is bundled with the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli). For more information on the CLI, read the [getting started guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm).
+
+We always recommend using the latest version of these commands bundled with the CLI, however, you can install a specific version or tag if needed.
+
+## Install
+
+```bash
+sf plugins install sfdx-kgo-plugin@x.y.z
 ```
-<!-- usagestop -->
+
+## Issues
+
+Please report any issues at https://github.com/forcedotcom/cli/issues
+
+## Contributing
+
+1. Please read our [Code of Conduct](CODE_OF_CONDUCT.md)
+2. Create a new issue before starting your project so that we can keep track of
+   what you are trying to add/fix. That way, we can also offer suggestions or
+   let you know if there is already an effort in progress.
+3. Fork this repository.
+4. [Build the plugin locally](#build)
+5. Create a _topic_ branch in your fork. Note, this step is recommended but technically not required if contributing using a fork.
+6. Edit the code in your fork.
+7. Write appropriate tests for your changes. Try to achieve at least 95% code coverage on any new code. No pull request will be accepted without unit tests.
+8. Sign CLA (see [CLA](#cla) below).
+9. Send us a pull request when you are done. We'll review your code, suggest any needed changes, and merge it in.
+
+### CLA
+
+External contributors will be required to sign a Contributor's License
+Agreement. You can do so by going to https://cla.salesforce.com/sign-cla.
+
+### Build
+
+To build the plugin locally, make sure to have yarn installed and run the following commands:
+
+```bash
+# Clone the repository
+git clone git@github.com:salesforcecli/sfdx-kgo-plugin
+
+# Install the dependencies and compile
+yarn && yarn build
+```
+
+To use your plugin, run using the local `./bin/dev` or `./bin/dev.cmd` file.
+
+```bash
+# Run using local run file.
+./bin/dev hello world
+```
+
+There should be no differences when running via the Salesforce CLI or using the local run file. However, it can be useful to link the plugin to do some additional testing or run your commands from anywhere on your machine.
+
+```bash
+# Link your plugin to the sf cli
+sf plugins link .
+# To verify
+sf plugins
+```
+
+## Commands
+
 <!-- commands -->
-* [`sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodatacount--e-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-* [`sfdx kgo:deploy:listApexCoverage -i <id> [-p] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodeploylistapexcoverage--i-id--p--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-* [`sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgodeployresult--i-id--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-* [`sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-kgolimits--l-array--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
-## `sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+- [`sf hello world`](#sf-hello-world)
 
-retrieves record counts from REST API recordCount
+## `sf hello world`
+
+Say hello either to the world or someone you know.
 
 ```
 USAGE
-  $ sfdx kgo:data:count [-e <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+  $ sf hello world [--json] [-n <value>]
 
-OPTIONS
-  -e, --entity-where-clause=entity-where-clause                                     optionnal constraints to add to the
-                                                                                    entityDefenition query where clause
+FLAGS
+  -n, --name=<value>  [default: World] The name of the person you'd like to say hello to.
 
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
+GLOBAL FLAGS
+  --json  Format output as json.
 
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
+DESCRIPTION
+  Say hello either to the world or someone you know.
 
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
+  Say hello either to the world or someone you know.
 
 EXAMPLES
-  $ sfdx kgo:data:count --targetusername myOrg@example.com
-       will give you the record count it can find from recordCount API for the most number of objects in the ORG
-    
-  $ sfdx kgo:data:count --targetusername myOrg@example.com --entity-where-clause 'IsLayoutable=true AND 
-  IsEverCreatable=true AND IsCustomizable=true'
-       will give you the record count it can find from recordCount API with object list restriction usefull msot of the 
-  time
+  Say hello to the world:
+
+    $ sf hello world
+
+  Say hello to someone you know:
+
+    $ sf hello world --name Astro
 ```
 
-_See code: [src/commands/kgo/data/count.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.25/src/commands/kgo/data/count.ts)_
-
-## `sfdx kgo:deploy:listApexCoverage -i <id> [-p] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
-
-fast get deploy coverage details, defaults to ordered by uncovered desc then number of lines desc
-
-```
-USAGE
-  $ sfdx kgo:deploy:listApexCoverage -i <id> [-p] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
-
-OPTIONS
-  -i, --jobid=jobid                                                                 (required) job ID of the deployment
-                                                                                    you want to check; defaults to your
-                                                                                    most recent CLI deployment if not
-                                                                                    specified
-
-  -p, --sortpct                                                                     sort by coverage percentage
-                                                                                    ascending then number of lines desc
-
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
-```
-
-_See code: [src/commands/kgo/deploy/listApexCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.25/src/commands/kgo/deploy/listApexCoverage.ts)_
-
-## `sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
-
-fast get deploy result, statistics and error list
-
-```
-USAGE
-  $ sfdx kgo:deploy:result -i <id> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
-
-OPTIONS
-  -i, --jobid=jobid                                                                 (required) job ID of the deployment
-                                                                                    you want to check; defaults to your
-                                                                                    most recent CLI deployment if not
-                                                                                    specified
-
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
-```
-
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.25/src/commands/kgo/deploy/result.ts)_
-
-## `sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
-
-get filtered and formated limits from API
-
-```
-USAGE
-  $ sfdx kgo:limits [-l <array>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
-
-OPTIONS
-  -l, --limits=limits                                                               optionnal list of limits to show ;
-                                                                                    comma seperated
-
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
-```
-
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v0.0.25/src/commands/kgo/limits.ts)_
 <!-- commandsstop -->
-<!-- debugging-your-plugin -->
-# Debugging your plugin
-We recommend using the Visual Studio Code (VS Code) IDE for your plugin development. Included in the `.vscode` directory of this plugin is a `launch.json` config file, which allows you to attach a debugger to the node process when running your commands.
-
-To debug the `hello:org` command: 
-1. Start the inspector
-  
-If you linked your plugin to the sfdx cli, call your command with the `dev-suspend` switch: 
-```sh-session
-$ sfdx hello:org -u myOrg@example.com --dev-suspend
-```
-  
-Alternatively, to call your command using the `bin/run` script, set the `NODE_OPTIONS` environment variable to `--inspect-brk` when starting the debugger:
-```sh-session
-$ NODE_OPTIONS=--inspect-brk bin/run hello:org -u myOrg@example.com
-```
-
-2. Set some breakpoints in your command code
-3. Click on the Debug icon in the Activity Bar on the side of VS Code to open up the Debug view.
-4. In the upper left hand corner of VS Code, verify that the "Attach to Remote" launch configuration has been chosen.
-5. Hit the green play button to the left of the "Attach to Remote" launch configuration window. The debugger should now be suspended on the first line of the program. 
-6. Hit the green play button at the top middle of VS Code (this play button will be to the right of the play button that you clicked in step #5).
-<br><img src=".images/vscodeScreenshot.png" width="480" height="278"><br>
-Congrats, you are debugging!
