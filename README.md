@@ -110,36 +110,116 @@ sf plugins
 ## Commands
 
 <!-- commands -->
+* [`sf kgo deploy ListApexCoverage`](#sf-kgo-deploy-listapexcoverage)
+* [`sf kgo deploy listCoverage`](#sf-kgo-deploy-listcoverage)
+* [`sf kgo deploy result`](#sf-kgo-deploy-result)
+* [`sf kgo limits`](#sf-kgo-limits)
 
-- [`sf hello world`](#sf-hello-world)
+## `sf kgo deploy ListApexCoverage`
 
-## `sf hello world`
-
-Say hello either to the world or someone you know.
+Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
 ```
 USAGE
-  $ sf hello world [--json] [-n <value>]
+  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [--json] [-p]
 
 FLAGS
-  -n, --name=<value>  [default: World] The name of the person you'd like to say hello to.
+  -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
+                            target org.
+  -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Say hello either to the world or someone you know.
+  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
-  Say hello either to the world or someone you know.
+  Description of a command.
+
+ALIASES
+  $ sf kgo deploy ListApexCoverage
 
 EXAMPLES
-  Say hello to the world:
-
-    $ sf hello world
-
-  Say hello to someone you know:
-
-    $ sf hello world --name Astro
+  $ sf kgo deploy ListApexCoverage
 ```
 
+## `sf kgo deploy listCoverage`
+
+Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
+
+```
+USAGE
+  $ sf kgo deploy listCoverage -o <value> -i <value> [--json] [-p]
+
+FLAGS
+  -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
+                            target org.
+  -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
+
+  Description of a command.
+
+ALIASES
+  $ sf kgo deploy ListApexCoverage
+
+EXAMPLES
+  $ sf kgo deploy listCoverage
+```
+
+## `sf kgo deploy result`
+
+Summary of a command.
+
+```
+USAGE
+  $ sf kgo deploy result -o <value> -i <value> [--json]
+
+FLAGS
+  -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
+                            target org.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Summary of a command.
+
+  Description of a command.
+
+EXAMPLES
+  $ sf kgo deploy result
+```
+
+## `sf kgo limits`
+
+Summary of a command.
+
+```
+USAGE
+  $ sf kgo limits -o <value> [--json] [-l <value>]
+
+FLAGS
+  -l, --limits=<value>...   Optionnal list of limits to show.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
+                            target org.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Summary of a command.
+
+  Description of a command.
+
+EXAMPLES
+  $ sf kgo limits
+```
 <!-- commandsstop -->
