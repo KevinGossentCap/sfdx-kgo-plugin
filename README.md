@@ -24,7 +24,7 @@ This repository provides a template for creating a plugin for the Salesforce CLI
 
 Salesforce CLI plugins are based on the [oclif plugin framework](<(https://oclif.io/docs/introduction.html)>). Read the [plugin developer guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_architecture_sf_cli.htm) to learn about Salesforce CLI plugin development.
 
-This repository contains a lot of additional scripts and tools to help with general Salesforce node development and enforce coding standards. You should familiarize yourself with some of the [node developer packages](#tooling) used by Salesforce. 
+This repository contains a lot of additional scripts and tools to help with general Salesforce node development and enforce coding standards. You should familiarize yourself with some of the [node developer packages](#tooling) used by Salesforce.
 
 Additionally, there are some additional tests that the Salesforce CLI will enforce if this plugin is ever bundled with the CLI. These test are included by default under the `posttest` script and it is required to keep these tests active in your plugin if you plan to have it bundled.
 
@@ -110,10 +110,11 @@ sf plugins
 ## Commands
 
 <!-- commands -->
-* [`sf kgo deploy ListApexCoverage`](#sf-kgo-deploy-listapexcoverage)
-* [`sf kgo deploy listCoverage`](#sf-kgo-deploy-listcoverage)
-* [`sf kgo deploy result`](#sf-kgo-deploy-result)
-* [`sf kgo limits`](#sf-kgo-limits)
+
+- [`sf kgo deploy ListApexCoverage`](#sf-kgo-deploy-listapexcoverage)
+- [`sf kgo deploy listCoverage`](#sf-kgo-deploy-listcoverage)
+- [`sf kgo deploy result`](#sf-kgo-deploy-result)
+- [`sf kgo limits`](#sf-kgo-limits)
 
 ## `sf kgo deploy ListApexCoverage`
 
@@ -121,16 +122,13 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [--json] [-p]
+  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
@@ -150,16 +148,13 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy listCoverage -o <value> -i <value> [--json] [-p]
+  $ sf kgo deploy listCoverage -o <value> -i <value> [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
@@ -179,15 +174,12 @@ Summary of a command.
 
 ```
 USAGE
-  $ sf kgo deploy result -o <value> -i <value> [--json]
+  $ sf kgo deploy result -o <value> -i <value>
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Summary of a command.
@@ -204,15 +196,12 @@ Summary of a command.
 
 ```
 USAGE
-  $ sf kgo limits -o <value> [--json] [-l <value>]
+  $ sf kgo limits -o <value> [-l <value>]
 
 FLAGS
   -l, --limits=<value>...   Optionnal list of limits to show.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
-
-GLOBAL FLAGS
-  --json  Format output as json.
 
 DESCRIPTION
   Summary of a command.
@@ -222,4 +211,5 @@ DESCRIPTION
 EXAMPLES
   $ sf kgo limits
 ```
+
 <!-- commandsstop -->
