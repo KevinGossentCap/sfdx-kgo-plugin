@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
     "@oclif/core": "^2.0.7",
@@ -101,7 +101,8 @@
     "version": "oclif readme"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "beta"
   },
   "author": "KevinGossentCap"
 }
