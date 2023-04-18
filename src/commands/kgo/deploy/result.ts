@@ -1,8 +1,8 @@
 /* eslint-disable sf-plugin/no-missing-messages */
-import {SfCommand, Flags} from '@salesforce/sf-plugins-core';
-import {Messages} from '@salesforce/core';
-import {DeployResult, DeployMessage, RunTestFailure} from 'jsforce/api/metadata';
-import {Interfaces} from '@oclif/core';
+import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
+import { Messages } from '@salesforce/core';
+import { DeployResult, DeployMessage, RunTestFailure } from 'jsforce/api/metadata';
+import { Interfaces } from '@oclif/core';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.result');
@@ -24,25 +24,26 @@ declare type KgoDeployResultResult = {
 };
 
 const compColumns = {
-  componentType: {header: 'componentType'},
-  problemType: {header: 'problemType'},
-  fullName: {header: 'fullName'},
-  fileName: {header: 'fileName'},
-  problem: {header: 'problem'},
+  componentType: { header: 'componentType' },
+  problemType: { header: 'problemType' },
+  fullName: { header: 'fullName' },
+  fileName: { header: 'fileName' },
+  problem: { header: 'problem' },
 };
 
 const apexColumns = {
-  index: {header: 'index'},
-  name: {header: 'name'},
-  methodName: {header: 'methodName'},
-  stackTrace: {header: 'stackTrace'},
-  message: {header: 'message'},
+  index: { header: 'index' },
+  name: { header: 'name' },
+  methodName: { header: 'methodName' },
+  stackTrace: { header: 'stackTrace' },
+  message: { header: 'message' },
 };
 
 export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
+  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -88,7 +89,7 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
           previousValue.numLocationsNotCovered += currentValue.numLocationsNotCovered;
           return previousValue;
         },
-        {numLocations: 0, numLocationsNotCovered: 0}
+        { numLocations: 0, numLocationsNotCovered: 0 }
       );
       output.codeCoverage = 100 - (100 * apexcov.numLocationsNotCovered) / apexcov.numLocations;
 
@@ -100,7 +101,7 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
           }
           return previousValue;
         },
-        {numFlow: 0, numFlowCovered: 0}
+        { numFlow: 0, numFlowCovered: 0 }
       );
       output.flowCoverage = (100 * flowcov.numFlowCovered) / flowcov.numFlow;
     }
@@ -112,10 +113,10 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
       this.log('ApexClass test Coverage', output.codeCoverage);
       this.log('Flow test Coverage', output.flowCoverage);
       if (output.componentFailures.length > 0) {
-        this.table(output.componentFailures, compColumns, {'no-truncate': true});
+        this.table(output.componentFailures, compColumns, { 'no-truncate': true });
       }
       if (output.apexFailures.length > 0) {
-        this.table(output.apexFailures, apexColumns, {'no-truncate': true});
+        this.table(output.apexFailures, apexColumns, { 'no-truncate': true });
       }
     }
     return output;
@@ -128,8 +129,6 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
     //   .metadata.checkDeployStatus(this.flags['job-id'], true);
 
     // return result;
-    return this.flags['target-org']
-      .getConnection(undefined)
-      .metadata.checkDeployStatus(this.flags['job-id'], true);
+    return this.flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(this.flags['job-id'], true);
   }
 }

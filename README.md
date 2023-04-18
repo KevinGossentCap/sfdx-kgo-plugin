@@ -122,13 +122,16 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [-p]
+  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [--json] [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
@@ -148,13 +151,16 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy listCoverage -o <value> -i <value> [-p]
+  $ sf kgo deploy listCoverage -o <value> -i <value> [--json] [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
@@ -174,12 +180,15 @@ Summary of a command.
 
 ```
 USAGE
-  $ sf kgo deploy result -o <value> -i <value>
+  $ sf kgo deploy result -o <value> -i <value> [--json]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Summary of a command.
@@ -196,12 +205,15 @@ Summary of a command.
 
 ```
 USAGE
-  $ sf kgo limits -o <value> [-l <value>]
+  $ sf kgo limits -o <value> [--json] [-l <value>]
 
 FLAGS
   -l, --limits=<value>...   Optionnal list of limits to show.
   -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
                             target org.
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
   Summary of a command.

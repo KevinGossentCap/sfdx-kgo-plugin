@@ -1,10 +1,10 @@
 /* eslint-disable sf-plugin/no-missing-messages */
-import {SfCommand, Flags} from '@salesforce/sf-plugins-core';
-import {Messages} from '@salesforce/core';
+import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
+import { Messages } from '@salesforce/core';
 // import {DeployResult, DeployMessage, RunTestFailure} from 'jsforce/api/metadata';
 // import {LimitInfo} from 'jsforce'
-import {Interfaces} from '@oclif/core';
-import {OrganizationLimitsInfo} from 'jsforce/lib';
+import { Interfaces } from '@oclif/core';
+import { OrganizationLimitsInfo } from 'jsforce/lib';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.limits');
@@ -18,21 +18,22 @@ declare type KgoLimitsResultElem = {
   rate: string;
   max: number;
   left: number;
-}
+};
 
 declare type KgoLimitsResult = KgoLimitsResultElem[];
 
 const limitsColumns = {
-  name: {header: 'Name'},
-  rate: {header: 'Percent used'},
-  max: {header: 'Max usable'},
-  left: {header: 'Remaining'},
+  name: { header: 'Name' },
+  rate: { header: 'Percent used' },
+  max: { header: 'Max usable' },
+  left: { header: 'Remaining' },
 };
 
 export default class KgoLimits extends SfCommand<KgoLimitsResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
+  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -60,28 +61,28 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
 
     const apiLimits = await this.getResult();
 
-    if (this.flags.debug) this.logJson(apiLimits)
+    if (this.flags.debug) this.logJson(apiLimits);
 
     if (!this.flags.limits) {
-      this.flags.limits = Object.keys(apiLimits)
+      this.flags.limits = Object.keys(apiLimits);
     }
 
     const output: KgoLimitsResult = [] as KgoLimitsResultElem[];
 
     for (const iterator of this.flags.limits) {
       const elem: KgoLimitsResultElem = {} as KgoLimitsResultElem;
-      elem.name = iterator
-      elem.max = apiLimits[iterator].Max
-      elem.left = apiLimits[iterator].Remaining
-      elem.rate = (100 * (elem.max - elem.left) / elem.max).toFixed(2) + ' %'
-      output.push(elem)
+      elem.name = iterator;
+      elem.max = apiLimits[iterator].Max;
+      elem.left = apiLimits[iterator].Remaining;
+      elem.rate = ((100 * (elem.max - elem.left)) / elem.max).toFixed(2) + ' %';
+      output.push(elem);
     }
 
     if (!this.flags.json) {
-      this.table(output, limitsColumns)
+      this.table(output, limitsColumns);
     }
 
-    return output
+    return output;
 
     // const name = this.flags.name ?? 'world';
     // this.log(`hello ${name} from C:\\GitRepos\\sfdx-kgo-plugin-2\\sfdx-kgo-plugin\\src\\commands\\kgo\\limits.ts`);
@@ -97,8 +98,6 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
     //   .limits();
 
     // return result;
-    return this.flags['target-org']
-      .getConnection(undefined)
-      .limits();
+    return this.flags['target-org'].getConnection(undefined).limits();
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {SfCommand, Flags, Ux} from '@salesforce/sf-plugins-core';
-import {Messages} from '@salesforce/core';
-import {CodeCoverageResult, FlowCoverageResult, DeployMessage, DeployResult} from 'jsforce/api/metadata';
-import {Interfaces} from '@oclif/core';
+import { SfCommand, Flags, Ux } from '@salesforce/sf-plugins-core';
+import { Messages } from '@salesforce/core';
+import { CodeCoverageResult, FlowCoverageResult, DeployMessage, DeployResult } from 'jsforce/api/metadata';
+import { Interfaces } from '@oclif/core';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.listCoverage');
@@ -26,21 +26,22 @@ declare type KgoDeployListCoverageResult = {
 };
 
 const tabColumns = {
-  type: {header: 'type'},
-  name: {header: 'name'},
-  numLocations: {header: 'numLocations'},
-  numLocationsNotCovered: {header: 'numLocationsNotCovered'},
-  pctCoverage: {header: 'pctCoverage'},
+  type: { header: 'type' },
+  name: { header: 'name' },
+  numLocations: { header: 'numLocations' },
+  numLocationsNotCovered: { header: 'numLocationsNotCovered' },
+  pctCoverage: { header: 'pctCoverage' },
 };
 
-const tableOptions: Ux.Table.Options = {sort: '-numLocationsNotCovered,-numLocations,name'};
-const altTableOptions: Ux.Table.Options = {sort: 'pctCoverage,-numLocations,name'};
+const tableOptions: Ux.Table.Options = { sort: '-numLocationsNotCovered,-numLocations,name' };
+const altTableOptions: Ux.Table.Options = { sort: 'pctCoverage,-numLocations,name' };
 
 export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCoverageResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
+  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -170,8 +171,6 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
     //   .metadata.checkDeployStatus(this.flags['job-id'], true);
 
     // return result;
-    return this.flags['target-org']
-      .getConnection(undefined)
-      .metadata.checkDeployStatus(this.flags['job-id'], true);
+    return this.flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(this.flags['job-id'], true);
   }
 }
