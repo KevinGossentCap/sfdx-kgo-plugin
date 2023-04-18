@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "target": "ES2020",
+    "target": "ES2021",
     "strictNullChecks": true,
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
