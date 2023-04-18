@@ -101,7 +101,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "beta"
+    "tag": "latest"
   },
   "author": "KevinGossentCap"
 }
