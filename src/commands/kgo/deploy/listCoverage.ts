@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SfCommand, Flags, Ux } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { CodeCoverageResult, FlowCoverageResult, DeployMessage, DeployResult } from 'jsforce/api/metadata';
@@ -41,7 +40,6 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
-  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -67,7 +65,7 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
       deprecateAliases: true,
     }),
   };
-  private flags: Interfaces.InferredFlags<typeof KgoDeployListCoverage.flags>;
+  private flags!: Interfaces.InferredFlags<typeof KgoDeployListCoverage.flags>;
 
   public async run(): Promise<KgoDeployListCoverageResult> {
     this.flags = (await this.parse(KgoDeployListCoverage)).flags;

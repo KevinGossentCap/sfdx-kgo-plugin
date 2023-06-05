@@ -1,11 +1,8 @@
 {
-  "extends": "@salesforce/dev-config/tsconfig",
+  "extends": "@salesforce/dev-config/tsconfig-strict",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "target": "ES2021",
-    "strictNullChecks": true,
-    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
