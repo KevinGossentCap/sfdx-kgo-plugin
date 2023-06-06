@@ -1,8 +1,5 @@
-/* eslint-disable sf-plugin/no-missing-messages */
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-// import {DeployResult, DeployMessage, RunTestFailure} from 'jsforce/api/metadata';
-// import {LimitInfo} from 'jsforce'
 import { Interfaces } from '@oclif/core';
 import { OrganizationLimitsInfo } from 'jsforce/lib';
 
@@ -33,7 +30,6 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
-  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -54,7 +50,7 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
       hidden: true,
     }),
   };
-  private flags: Interfaces.InferredFlags<typeof KgoLimits.flags>;
+  private flags!: Interfaces.InferredFlags<typeof KgoLimits.flags>;
 
   public async run(): Promise<KgoLimitsResult> {
     this.flags = (await this.parse(KgoLimits)).flags;

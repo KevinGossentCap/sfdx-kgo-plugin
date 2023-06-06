@@ -1,5 +1,7 @@
 # -- CLEAN
 tmp/
+.sfdx/
+.sf/
 # use yarn by default, so ignore npm
 package-lock.json
 
@@ -31,6 +33,9 @@ docs
 package.json.bak.
 
 # -- CLEAN ALL
+*.tsbuildinfo
+.eslintcache
+.wireit
 node_modules
 
 # --

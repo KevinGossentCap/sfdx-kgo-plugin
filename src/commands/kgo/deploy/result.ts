@@ -1,4 +1,3 @@
-/* eslint-disable sf-plugin/no-missing-messages */
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { DeployResult, DeployMessage, RunTestFailure } from 'jsforce/api/metadata';
@@ -43,7 +42,6 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
-  // public static readonly enableJsonFlag = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg({
@@ -63,7 +61,7 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
       deprecateAliases: true,
     }),
   };
-  private flags: Interfaces.InferredFlags<typeof KgoDeployResult.flags>;
+  private flags!: Interfaces.InferredFlags<typeof KgoDeployResult.flags>;
 
   public async run(): Promise<KgoDeployResultResult> {
     this.flags = (await this.parse(KgoDeployResult)).flags;
