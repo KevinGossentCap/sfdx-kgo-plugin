@@ -1,5 +1,6 @@
 # -- CLEAN
 tmp/
+/force-app/main/
 # use yarn by default, so ignore npm
 package-lock.json
 
