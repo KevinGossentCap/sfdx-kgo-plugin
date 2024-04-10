@@ -39,6 +39,8 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
+  public static readonly hiddenAliases = ['kgo:deploy:ListApexCoverage'];
+  public static readonly deprecateAliases = true;
 
   public static readonly flags = {
     'target-org': Flags.requiredOrg(),
