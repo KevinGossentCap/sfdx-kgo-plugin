@@ -137,7 +137,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
-  More information about a command. Don't repeat the summary.
+  undefined
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -166,7 +166,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
-  More information about a command. Don't repeat the summary.
+  undefined
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -175,11 +175,11 @@ EXAMPLES
   $ sf kgo deploy listCoverage
 ```
 
-_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.1/src/commands/kgo/deploy/listCoverage.ts)_
+_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.2/src/commands/kgo/deploy/listCoverage.ts)_
 
 ## `sf kgo deploy result`
 
-Summary of a command.
+Fast get deploy result, statistics and error list.
 
 ```
 USAGE
@@ -194,19 +194,19 @@ GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Summary of a command.
+  Fast get deploy result, statistics and error list.
 
-  More information about a command. Don't repeat the summary.
+  undefined
 
 EXAMPLES
   $ sf kgo deploy result
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.1/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.2/src/commands/kgo/deploy/result.ts)_
 
 ## `sf kgo limits`
 
-Summary of a command.
+Get filtered and formated limits from API.
 
 ```
 USAGE
@@ -221,15 +221,15 @@ GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Summary of a command.
+  Get filtered and formated limits from API.
 
-  More information about a command. Don't repeat the summary.
+  undefined
 
 EXAMPLES
   $ sf kgo limits
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.1/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.2/src/commands/kgo/limits.ts)_
 
 ## `sf kgo source read`
 
@@ -252,7 +252,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Read Metadata using the CRUD Metadata API.
 
-  Read Metadata using the CRUD Metadata API.
+  undefined
 
 EXAMPLES
   $ sf kgo source read -m "Profile:Admin"
@@ -262,6 +262,6 @@ EXAMPLES
   $ sf kgo source read -p force-app/main/default/objects/Account/recordTypes/Business.recordType-meta.xml
 ```
 
-_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.1/src/commands/kgo/source/read.ts)_
+_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.2/src/commands/kgo/source/read.ts)_
 
 <!-- commandsstop -->
