@@ -4,7 +4,7 @@
   "version": "1.4.2",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
-    "@oclif/core": "^3.26.0",
+    "@oclif/core": "^3.26.2",
     "@salesforce/core": "^6.4.7",
     "@salesforce/source-deploy-retrieve": "^10.9.0",
     "@salesforce/sf-plugins-core": "^7.1.3"
