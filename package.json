@@ -64,7 +64,10 @@
     },
     "flexibleTaxonomy": true
   },
-  "repository": "KevinGossentCap/sfdx-kgo-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinGossentCap/sfdx-kgo-plugin.git"
+  },
   "scripts": {
     "build": "wireit",
     "clean": "sf-clean",
