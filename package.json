@@ -50,9 +50,6 @@
       "@oclif/plugin-help"
     ],
     "topics": {
-      "hello": {
-        "description": "Commands to say hello."
-      },
       "kgo": {
         "description": "description for kgo",
         "subtopics": {

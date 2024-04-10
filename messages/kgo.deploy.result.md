@@ -1,10 +1,10 @@
 # summary
 
-Summary of a command.
+Fast get deploy result, statistics and error list.
 
 # description
 
-More information about a command. Don't repeat the summary.
+undefined
 
 # examples
 

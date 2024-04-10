@@ -1,10 +1,10 @@
 # summary
 
-Summary of a command.
+Get filtered and formated limits from API.
 
 # description
 
-More information about a command. Don't repeat the summary.
+undefined
 
 # examples
 

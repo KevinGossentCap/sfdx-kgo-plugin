@@ -4,7 +4,7 @@ Read Metadata using the CRUD Metadata API.
 
 # description
 
-Read Metadata using the CRUD Metadata API.
+undefined
 
 # examples
 
