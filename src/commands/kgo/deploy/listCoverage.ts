@@ -1,9 +1,8 @@
 import { SfCommand, Flags, Ux } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { CodeCoverageResult, FlowCoverageResult, DeployMessage, DeployResult } from 'jsforce/api/metadata';
-import { Interfaces } from '@oclif/core';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.listCoverage');
 
 declare type KgoDeployListCoverageResultItem = {
@@ -42,13 +41,7 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
 
   public static readonly flags = {
-    'target-org': Flags.requiredOrg({
-      summary: messages.getMessage('flags.target-org.summary'),
-      char: 'o',
-      required: true,
-      aliases: ['targetusername', 'u'],
-      deprecateAliases: true,
-    }),
+    'target-org': Flags.requiredOrg(),
     'job-id': Flags.salesforceId({
       summary: messages.getMessage('flags.job-id.summary'),
       char: 'i',
@@ -65,16 +58,9 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
       deprecateAliases: true,
     }),
   };
-  private flags!: Interfaces.InferredFlags<typeof KgoDeployListCoverage.flags>;
 
   public async run(): Promise<KgoDeployListCoverageResult> {
-    this.flags = (await this.parse(KgoDeployListCoverage)).flags;
-
-    // Get the connection to the org
-    // eslint-disable-next-line sf-plugin/get-connection-with-version
-    // const conn = this.flags['target-org'].getConnection(undefined);
-    // this.logJson(conn)
-    // this.logJson(conn.metadata)
+    const { flags } = await this.parse(KgoDeployListCoverage);
 
     const result = await this.getResult();
 
@@ -100,7 +86,7 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
 
         output.codeCoverage = result?.details?.['runTestResult']?.['codeCoverage'].reduce(reducer, []);
 
-        this.table(output.codeCoverage, tabColumns, this.flags['sort-pct'] ? altTableOptions : tableOptions);
+        this.table(output.codeCoverage, tabColumns, flags['sort-pct'] ? altTableOptions : tableOptions);
       } else {
         this.log('N/A');
       }
@@ -158,17 +144,8 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
   }
 
   protected async getResult(): Promise<DeployResult> {
-    // Get the connection to the org
-    // eslint-disable-next-line sf-plugin/get-connection-with-version
-    // const conn = this.flags['target-org'].getConnection(undefined);
-    // this.logJson(conn)
-    // this.logJson(conn.metadata)
-
-    // const result = await this.flags['target-org']
-    //   .getConnection(undefined)
-    //   .metadata.checkDeployStatus(this.flags['job-id'], true);
-
-    // return result;
-    return this.flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(this.flags['job-id'], true);
+    const { flags } = await this.parse(KgoDeployListCoverage);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    return flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(flags['job-id'], true);
   }
 }

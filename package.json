@@ -1,66 +1,47 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
-    "@oclif/core": "^2.8.2",
-    "@salesforce/core": "^3.34.8",
-    "@salesforce/kit": "^3.0.1",
-    "@salesforce/sf-plugins-core": "^2.4.3",
-    "tslib": "^2"
+    "@oclif/core": "^3.26.0",
+    "@salesforce/core": "^6.4.7",
+    "@salesforce/sf-plugins-core": "^7.1.3"
   },
   "devDependencies": {
-    "@oclif/test": "^2.3.17",
-    "@salesforce/cli-plugins-testkit": "^3.4.0",
-    "@salesforce/dev-config": "^4.0.1",
-    "@salesforce/dev-scripts": "^5.0.1",
-    "@salesforce/prettier-config": "^0.0.2",
-    "@salesforce/ts-sinon": "^1.4.7",
-    "@swc/core": "^1.3.19",
-    "@types/inquirer": "^9.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.8",
-    "@typescript-eslint/parser": "^5.59.6",
-    "chai": "^4.3.6",
-    "eslint": "^8.21.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-salesforce": "^2.0.1",
-    "eslint-config-salesforce-typescript": "^1.1.1",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsdoc": "^44.2.4",
-    "eslint-plugin-sf-plugin": "^1.15.3",
-    "husky": "^7.0.4",
-    "jsforce": "^2.0.0-beta.23",
-    "mocha": "^9.2.2",
-    "nyc": "^15.1.0",
-    "oclif": "^3.8.1",
-    "prettier": "^2.8.8",
-    "pretty-quick": "^3.1.3",
+    "@oclif/plugin-command-snapshot": "^5.1.3",
+    "@salesforce/cli-plugins-testkit": "^5.1.9",
+    "@salesforce/dev-scripts": "^8.3.0",
+    "@salesforce/source-deploy-retrieve": "^10.9.0",
+    "@salesforce/ts-sinon": "^1.4.19",
+    "@types/xml2js": "^0.4.14",
+    "eslint-plugin-sf-plugin": "^1.17.2",
+    "jsforce": "^3.1.0",
+    "oclif": "^4.6.3",
     "shx": "0.3.4",
-    "sinon": "10.0.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.4",
-    "wireit": "^0.9.5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3",
+    "xml2js": "^0.6.2"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "files": [
     "/lib",
     "/messages",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/oclif.lock"
   ],
   "keywords": [
     "force",
     "salesforce",
-    "sfdx",
     "salesforcedx",
-    "sfdx-plugin",
+    "sf",
     "sf-plugin",
-    "sf"
+    "sfdx",
+    "sfdx-plugin"
   ],
   "license": "BSD-3-Clause",
-  "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
     "bin": "sf",
@@ -74,22 +55,26 @@
         "subtopics": {
           "deploy": {
             "description": "description for kgo.deploy"
+          },
+          "source": {
+            "description": "description for kgo.source"
           }
         }
       }
-    }
+    },
+    "flexibleTaxonomy": true
   },
   "repository": "KevinGossentCap/sfdx-kgo-plugin",
   "scripts": {
     "build": "wireit",
     "clean": "sf-clean",
     "clean-all": "sf-clean all",
-    "clean:lib": "shx rm -rf lib && shx rm -rf coverage && shx rm -rf .nyc_output && shx rm -f oclif.manifest.json",
+    "clean:lib": "shx rm -rf lib && shx rm -rf coverage && shx rm -rf .nyc_output && shx rm -f oclif.manifest.json oclif.lock",
     "compile": "wireit",
     "docs": "sf-docs",
     "format": "wireit",
     "lint": "wireit",
-    "postpack": "shx rm -f oclif.manifest.json",
+    "postpack": "shx rm -f oclif.manifest.json oclif.lock",
     "prepack": "sf-prepack",
     "test": "wireit",
     "test:nuts": "nyc mocha \"**/*.nut.ts\" --slow 4500 --timeout 600000 --parallel",
@@ -202,5 +187,7 @@
       "output": []
     }
   },
+  "exports": "./lib/index.js",
+  "type": "module",
   "author": "KevinGossentCap"
 }

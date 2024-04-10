@@ -1,7 +1,5 @@
 # -- CLEAN
 tmp/
-.sfdx/
-.sf/
 # use yarn by default, so ignore npm
 package-lock.json
 
@@ -46,3 +44,5 @@ node_modules
 .idea
 
 oclif.manifest.json
+
+oclif.lock

@@ -4,16 +4,15 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 # description
 
-Description of a command.
+More information about a command. Don't repeat the summary.
 
 # examples
 
 - <%= config.bin %> <%= command.id %>
 
-
 # flags.target-org.summary
 
-Login username or alias for the target org.
+undefined
 
 # flags.job-id.summary
 

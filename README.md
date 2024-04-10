@@ -115,6 +115,7 @@ sf plugins
 - [`sf kgo deploy listCoverage`](#sf-kgo-deploy-listcoverage)
 - [`sf kgo deploy result`](#sf-kgo-deploy-result)
 - [`sf kgo limits`](#sf-kgo-limits)
+- [`sf kgo source read`](#sf-kgo-source-read)
 
 ## `sf kgo deploy ListApexCoverage`
 
@@ -126,8 +127,8 @@ USAGE
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
-  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
-                            target org.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Username or alias of the target
+                            org. Not required if the `target-org` configuration variable is already set.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
 
 GLOBAL FLAGS
@@ -136,7 +137,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
-  Description of a command.
+  More information about a command. Don't repeat the summary.
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -155,8 +156,8 @@ USAGE
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
-  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
-                            target org.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Username or alias of the target
+                            org. Not required if the `target-org` configuration variable is already set.
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
 
 GLOBAL FLAGS
@@ -165,7 +166,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
 
-  Description of a command.
+  More information about a command. Don't repeat the summary.
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -173,6 +174,8 @@ ALIASES
 EXAMPLES
   $ sf kgo deploy listCoverage
 ```
+
+_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.0/src/commands/kgo/deploy/listCoverage.ts)_
 
 ## `sf kgo deploy result`
 
@@ -184,8 +187,8 @@ USAGE
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
-  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
-                            target org.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Username or alias of the target
+                            org. Not required if the `target-org` configuration variable is already set.
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -193,11 +196,13 @@ GLOBAL FLAGS
 DESCRIPTION
   Summary of a command.
 
-  Description of a command.
+  More information about a command. Don't repeat the summary.
 
 EXAMPLES
   $ sf kgo deploy result
 ```
+
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.0/src/commands/kgo/deploy/result.ts)_
 
 ## `sf kgo limits`
 
@@ -209,8 +214,8 @@ USAGE
 
 FLAGS
   -l, --limits=<value>...   Optionnal list of limits to show.
-  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Login username or alias for the
-                            target org.
+  -o, --target-org=<value>  (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Username or alias of the target
+                            org. Not required if the `target-org` configuration variable is already set.
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -218,10 +223,45 @@ GLOBAL FLAGS
 DESCRIPTION
   Summary of a command.
 
-  Description of a command.
+  More information about a command. Don't repeat the summary.
 
 EXAMPLES
   $ sf kgo limits
 ```
+
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.0/src/commands/kgo/limits.ts)_
+
+## `sf kgo source read`
+
+Read Metadata using the CRUD Metadata API.
+
+```
+USAGE
+  $ sf kgo source read -o <value> [--json] [-m <value>] [-d <value>]
+
+FLAGS
+  -d, --source-dir=<value>...  File paths for source to retrieve from the org.
+  -m, --metadata=<value>...    Metadata component names to retrieve. Wildcards (`*`) supported as long as you use
+                               quotes, such as `ApexClass:MyClass*`.
+  -o, --target-org=<value>     (required) [default: kevin.gossent+sfdc-ren-badge@gmail.com] Username or alias of the
+                               target org. Not required if the `target-org` configuration variable is already set.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Read Metadata using the CRUD Metadata API.
+
+  Read Metadata using the CRUD Metadata API.
+
+EXAMPLES
+  $ sf kgo source read -m "Profile:Admin"
+
+  $ sf kgo source read -m "RecordType:Account.Business"
+
+  $ sf kgo source read -p force-app/main/default/objects/Account/recordTypes/Business.recordType-meta.xml
+```
+
+_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.0/src/commands/kgo/source/read.ts)_
 
 <!-- commandsstop -->

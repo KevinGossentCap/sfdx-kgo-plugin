@@ -1,9 +1,8 @@
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { DeployResult, DeployMessage, RunTestFailure } from 'jsforce/api/metadata';
-import { Interfaces } from '@oclif/core';
+import { DeployMessage, DeployResult, RunTestFailure } from 'jsforce/api/metadata';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.result');
 
 declare type myIndexed = {
@@ -12,7 +11,7 @@ declare type myIndexed = {
 
 declare type myApexFailures = myIndexed & RunTestFailure;
 
-declare type KgoDeployResultResult = {
+export type KgoDeployResultResult = {
   status: string;
   numberComponentErrors: number;
   numberTestErrors: number;
@@ -44,13 +43,7 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    'target-org': Flags.requiredOrg({
-      summary: messages.getMessage('flags.target-org.summary'),
-      char: 'o',
-      required: true,
-      aliases: ['targetusername', 'u'],
-      deprecateAliases: true,
-    }),
+    'target-org': Flags.requiredOrg(),
     'job-id': Flags.salesforceId({
       summary: messages.getMessage('flags.job-id.summary'),
       char: 'i',
@@ -61,10 +54,9 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
       deprecateAliases: true,
     }),
   };
-  private flags!: Interfaces.InferredFlags<typeof KgoDeployResult.flags>;
 
   public async run(): Promise<KgoDeployResultResult> {
-    this.flags = (await this.parse(KgoDeployResult)).flags;
+    const { flags } = await this.parse(KgoDeployResult);
 
     const result = await this.getResult();
 
@@ -104,7 +96,7 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
       output.flowCoverage = (100 * flowcov.numFlowCovered) / flowcov.numFlow;
     }
 
-    if (!this.flags.json) {
+    if (!flags.json) {
       this.log('Status', output.status);
       this.log('Component Failures', output.numberComponentErrors);
       this.log('Apex testClass Failures', output.numberTestErrors);
@@ -121,12 +113,8 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
   }
 
   protected async getResult(): Promise<DeployResult> {
-    // Get the connection to the org
-    // const result = await this.flags['target-org']
-    //   .getConnection(undefined)
-    //   .metadata.checkDeployStatus(this.flags['job-id'], true);
-
-    // return result;
-    return this.flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(this.flags['job-id'], true);
+    const { flags } = await this.parse(KgoDeployResult);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    return flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(flags['job-id'], true);
   }
 }

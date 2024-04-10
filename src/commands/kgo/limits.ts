@@ -1,23 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment */
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { Interfaces } from '@oclif/core';
-import { OrganizationLimitsInfo } from 'jsforce/lib';
+import { OrganizationLimitsInfo } from 'jsforce';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.limits');
 
-// export type KgoLimitsResult = {
-//   path: string;
-// };
-
-declare type KgoLimitsResultElem = {
+export type KgoLimitsResult = {
   name: string;
   rate: string;
   max: number;
   left: number;
 };
-
-declare type KgoLimitsResult = KgoLimitsResultElem[];
 
 const limitsColumns = {
   name: { header: 'Name' },
@@ -26,19 +20,13 @@ const limitsColumns = {
   left: { header: 'Remaining' },
 };
 
-export default class KgoLimits extends SfCommand<KgoLimitsResult> {
+export default class KgoLimits extends SfCommand<KgoLimitsResult[]> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    'target-org': Flags.requiredOrg({
-      summary: messages.getMessage('flags.target-org.summary'),
-      char: 'o',
-      required: true,
-      aliases: ['targetusername', 'u'],
-      deprecateAliases: true,
-    }),
+    'target-org': Flags.requiredOrg(),
     limits: Flags.string({
       summary: messages.getMessage('flags.limits.summary'),
       char: 'l',
@@ -50,23 +38,22 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
       hidden: true,
     }),
   };
-  private flags!: Interfaces.InferredFlags<typeof KgoLimits.flags>;
 
-  public async run(): Promise<KgoLimitsResult> {
-    this.flags = (await this.parse(KgoLimits)).flags;
+  public async run(): Promise<KgoLimitsResult[]> {
+    const { flags } = await this.parse(KgoLimits);
 
     const apiLimits = await this.getResult();
 
-    if (this.flags.debug) this.logJson(apiLimits);
+    if (flags.debug) this.logJson(apiLimits);
 
-    if (!this.flags.limits) {
-      this.flags.limits = Object.keys(apiLimits);
+    if (!flags.limits) {
+      flags.limits = Object.keys(apiLimits);
     }
 
-    const output: KgoLimitsResult = [] as KgoLimitsResultElem[];
+    const output = [] as KgoLimitsResult[];
 
-    for (const iterator of this.flags.limits) {
-      const elem: KgoLimitsResultElem = {} as KgoLimitsResultElem;
+    for (const iterator of flags.limits) {
+      const elem = {} as KgoLimitsResult;
       elem.name = iterator;
       elem.max = apiLimits[iterator].Max;
       elem.left = apiLimits[iterator].Remaining;
@@ -74,26 +61,16 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult> {
       output.push(elem);
     }
 
-    if (!this.flags.json) {
+    if (!flags.json) {
       this.table(output, limitsColumns);
     }
 
     return output;
-
-    // const name = this.flags.name ?? 'world';
-    // this.log(`hello ${name} from C:\\GitRepos\\sfdx-kgo-plugin-2\\sfdx-kgo-plugin\\src\\commands\\kgo\\limits.ts`);
-    // return {
-    //   path: 'C:\\GitRepos\\sfdx-kgo-plugin-2\\sfdx-kgo-plugin\\src\\commands\\kgo\\limits.ts',
-    // };
   }
 
   protected async getResult(): Promise<OrganizationLimitsInfo> {
-    // Get the connection to the org
-    // const result = await this.flags['target-org']
-    //   .getConnection(undefined)
-    //   .limits();
-
-    // return result;
-    return this.flags['target-org'].getConnection(undefined).limits();
+    const { flags } = await this.parse(KgoLimits);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    return flags['target-org'].getConnection(undefined).limits();
   }
 }

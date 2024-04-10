@@ -1,26 +1,24 @@
-import {config as chaiConfig} from 'chai';
-import {TestContext} from '@salesforce/core/lib/testSetup'; // , MockTestOrgData
-// import {AuthInfo} from '@salesforce/core';// , Org
-import {stubSfCommandUx} from '@salesforce/sf-plugins-core';
-import {stubMethod} from '@salesforce/ts-sinon';
-import KgoDeployListCoverage from '../../../../src/commands/kgo/deploy/listCoverage';
-import defaultResult from './initial_deploy_result.json';
-import emptyResult from './initial_deploy_result copy.json';
-
-chaiConfig.truncateThreshold = 0;
+import { createRequire } from 'node:module';
+import { TestContext } from '@salesforce/core/lib/testSetup.js';
+// import { expect } from 'chai';
+import { stubSfCommandUx } from '@salesforce/sf-plugins-core';
+import { stubMethod } from '@salesforce/ts-sinon';
+import KgoDeployListCoverage from '../../../../src/commands/kgo/deploy/listCoverage.js';
 
 describe('kgo deploy listCoverage', () => {
-  // Create new TestContext, which automatically creates and restores stubs
-  // pertaining to authorization, orgs, config files, etc...
-  // There is no need to call $$.restore() in afterEach() since that is
-  // done automatically by the TestContext.
   const $$ = new TestContext();
+  // let sfCommandStubs: ReturnType<typeof stubSfCommandUx>;
+  const require = createRequire(import.meta.url);
+  const defaultResult = require('./initial_deploy_result.json') as string;
+  const emptyResult = require('./initial_deploy_result.json') as string;
 
-  // let conn = new MockTestOrgData();
-
-  beforeEach(async () => {
-    // Stub the ux methods on SfCommand so that you don't get any command output in your tests.
+  beforeEach(() => {
+    // sfCommandStubs = stubSfCommandUx($$.SANDBOX);
     stubSfCommandUx($$.SANDBOX);
+  });
+
+  afterEach(() => {
+    $$.restore();
   });
 
   it('initial test', async () => {
