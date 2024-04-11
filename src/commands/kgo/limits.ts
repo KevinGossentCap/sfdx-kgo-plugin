@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment */
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { OrganizationLimitsInfo } from 'jsforce';
+import { OrganizationLimitsInfo } from '@jsforce/jsforce-node';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.limits');
@@ -22,7 +21,7 @@ const limitsColumns = {
 
 export default class KgoLimits extends SfCommand<KgoLimitsResult[]> {
   public static readonly summary = messages.getMessage('summary');
-  public static readonly description = messages.getMessage('description');
+  // public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
@@ -70,7 +69,6 @@ export default class KgoLimits extends SfCommand<KgoLimitsResult[]> {
 
   protected async getResult(): Promise<OrganizationLimitsInfo> {
     const { flags } = await this.parse(KgoLimits);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     return flags['target-org'].getConnection(undefined).limits();
   }
 }

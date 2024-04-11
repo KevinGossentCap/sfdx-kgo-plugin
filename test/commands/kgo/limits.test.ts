@@ -1,6 +1,5 @@
 import { createRequire } from 'node:module';
-import { TestContext } from '@salesforce/core/lib/testSetup.js';
-// import {expect} from 'chai';
+import { TestContext } from '@salesforce/core/testSetup';
 import { stubSfCommandUx } from '@salesforce/sf-plugins-core';
 import { stubMethod } from '@salesforce/ts-sinon';
 import KgoLimits from '../../../src/commands/kgo/limits.js';

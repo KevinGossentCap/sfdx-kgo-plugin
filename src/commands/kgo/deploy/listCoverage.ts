@@ -1,6 +1,11 @@
 import { SfCommand, Flags, Ux } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { CodeCoverageResult, FlowCoverageResult, DeployMessage, DeployResult } from 'jsforce/api/metadata';
+import {
+  CodeCoverageResult,
+  DeployMessage,
+  DeployResult,
+  FlowCoverageResult,
+} from '@jsforce/jsforce-node/lib/api/metadata.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.listCoverage');
@@ -18,7 +23,7 @@ declare type KgoFlowCoverage = {
   others?: KgoDeployListCoverageResultItem[];
 };
 
-declare type KgoDeployListCoverageResult = {
+export type KgoDeployListCoverageResult = {
   codeCoverage?: KgoDeployListCoverageResultItem[];
   flowCoverage?: KgoFlowCoverage;
 };
@@ -36,7 +41,7 @@ const altTableOptions: Ux.Table.Options = { sort: 'pctCoverage,-numLocations,nam
 
 export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCoverageResult> {
   public static readonly summary = messages.getMessage('summary');
-  public static readonly description = messages.getMessage('description');
+  // public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
   public static readonly hiddenAliases = ['kgo:deploy:ListApexCoverage'];
@@ -147,7 +152,6 @@ export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCovera
 
   protected async getResult(): Promise<DeployResult> {
     const { flags } = await this.parse(KgoDeployListCoverage);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     return flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(flags['job-id'], true);
   }
 }

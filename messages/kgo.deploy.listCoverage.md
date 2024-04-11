@@ -4,7 +4,7 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 # description
 
-undefined
+More information about a command. Don't repeat the summary.
 
 # examples
 

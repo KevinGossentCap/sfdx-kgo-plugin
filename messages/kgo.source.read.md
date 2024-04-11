@@ -4,7 +4,7 @@ Read Metadata using the CRUD Metadata API.
 
 # description
 
-undefined
+More information about a command. Don't repeat the summary.
 
 # examples
 

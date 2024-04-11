@@ -2,9 +2,6 @@
   "extends": "@salesforce/dev-config/tsconfig-test-strict-esm",
   "include": ["./**/*.ts"],
   "compilerOptions": {
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true
-  },
-  "exclude": ["node_modules", "node_modules/*", "node_modules/**/*"]
+    "skipLibCheck": true
+  }
 }

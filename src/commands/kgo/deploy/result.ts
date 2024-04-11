@@ -1,6 +1,6 @@
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { DeployMessage, DeployResult, RunTestFailure } from 'jsforce/api/metadata';
+import { DeployMessage, DeployResult, RunTestFailure } from '@jsforce/jsforce-node/lib/api/metadata.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.deploy.result');
@@ -39,7 +39,7 @@ const apexColumns = {
 
 export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
   public static readonly summary = messages.getMessage('summary');
-  public static readonly description = messages.getMessage('description');
+  // public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
@@ -114,7 +114,6 @@ export default class KgoDeployResult extends SfCommand<KgoDeployResultResult> {
 
   protected async getResult(): Promise<DeployResult> {
     const { flags } = await this.parse(KgoDeployResult);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     return flags['target-org'].getConnection(undefined).metadata.checkDeployStatus(flags['job-id'], true);
   }
 }

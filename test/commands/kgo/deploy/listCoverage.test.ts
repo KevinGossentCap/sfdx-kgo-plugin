@@ -1,6 +1,5 @@
 import { createRequire } from 'node:module';
-import { TestContext } from '@salesforce/core/lib/testSetup.js';
-// import { expect } from 'chai';
+import { TestContext } from '@salesforce/core/testSetup';
 import { stubSfCommandUx } from '@salesforce/sf-plugins-core';
 import { stubMethod } from '@salesforce/ts-sinon';
 import KgoDeployListCoverage from '../../../../src/commands/kgo/deploy/listCoverage.js';

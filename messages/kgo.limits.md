@@ -4,7 +4,7 @@ Get filtered and formated limits from API.
 
 # description
 
-undefined
+More information about a command. Don't repeat the summary.
 
 # examples
 

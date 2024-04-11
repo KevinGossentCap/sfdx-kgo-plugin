@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call,no-await-in-loop */
 import { dirname, join } from 'node:path';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages, SfProject } from '@salesforce/core';
-import type { MetadataType, Metadata, MetadataDefinition } from 'jsforce/api/metadata';
-// import type {MetadataDefinition} from 'jsforce/api/metadata';
+import { ComponentSetBuilder, MetadataComponent, SourceComponent } from '@salesforce/source-deploy-retrieve';
 import { filePathsFromMetadataComponent } from '@salesforce/source-deploy-retrieve/lib/src/utils/filePathGenerator.js';
-import { ComponentSetBuilder, SourceComponent, MetadataComponent } from '@salesforce/source-deploy-retrieve';
+import { Metadata, MetadataType, MetadataDefinition } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import { Builder } from 'xml2js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
@@ -16,7 +14,7 @@ export type KgoSourceReadResult = void;
 
 export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
   public static readonly summary = messages.getMessage('summary');
-  public static readonly description = messages.getMessage('description');
+  // public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
@@ -37,7 +35,6 @@ export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
   public async run(): Promise<KgoSourceReadResult> {
     const { flags } = await this.parse(KgoSourceRead);
 
-    // const conn = flags['target-org'].getConnection(undefined);
     const project = await SfProject.resolve();
     const packageDirectories = project.getPackageDirectories();
     const defaultPackageDirectory = project.getDefaultPackage().path;
@@ -55,6 +52,7 @@ export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
 
     for (const component of componentSet) {
       this.log('reading', `${component.type.name}:${component.fullName}`, '...');
+      // eslint-disable-next-line no-await-in-loop
       const mdJson = await this.getResult(component);
       let filePath;
       if (component instanceof SourceComponent) {
@@ -63,7 +61,6 @@ export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
         filePath = filePathsFromMetadataComponent(component, join(defaultPackageDirectory, 'main', 'default')).find(
           (p) => p.endsWith(`.${component.type.suffix}-meta.xml`)
         );
-        // eslint-disable-next-line @typescript-eslint/await-thenable
         mkdirSync(dirname(filePath as string), { recursive: true });
       }
       writeFileSync(filePath as string, convertToXml(component, mdJson));
@@ -76,7 +73,6 @@ export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
     component: MetadataComponent | SourceComponent
   ): Promise<MetadataDefinition<MetadataType, Metadata>> {
     const { flags } = await this.parse(KgoSourceRead);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     return flags['target-org']
       .getConnection(undefined)
       .metadata.read(component.type.name as MetadataType, component.fullName);
@@ -104,7 +100,6 @@ export function convertToXml(component: MetadataComponent | SourceComponent, dat
         indent: '    ', // 4 spaces
         newline: '\n',
       },
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     }).buildObject({
       ...data,
       ...{

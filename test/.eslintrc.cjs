@@ -15,5 +15,11 @@ module.exports = {
     // Easily return a promise in a mocked method.
     '@typescript-eslint/require-await': 'off',
     header: 'off',
+
+    // common exclusion for unsafe any in tests
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
   },
 };

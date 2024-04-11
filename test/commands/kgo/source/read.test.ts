@@ -1,6 +1,4 @@
-// import {readFileSync} from 'node:fs';
-import { TestContext } from '@salesforce/core/lib/testSetup.js';
-// import {expect} from 'chai';
+import { TestContext } from '@salesforce/core/testSetup';
 import { stubSfCommandUx } from '@salesforce/sf-plugins-core';
 import { stubMethod } from '@salesforce/ts-sinon';
 import KgoSourceRead from '../../../../src/commands/kgo/source/read.js';

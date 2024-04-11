@@ -4,7 +4,7 @@ Fast get deploy result, statistics and error list.
 
 # description
 
-undefined
+More information about a command. Don't repeat the summary.
 
 # examples
 
