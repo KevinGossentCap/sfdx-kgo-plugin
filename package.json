@@ -1,7 +1,7 @@
 {
   "name": "sfdx-kgo-plugin",
   "description": "SFDX plugin of great daily use tools",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "bugs": "https://github.com/KevinGossentCap/sfdx-kgo-plugin/issues",
   "dependencies": {
     "@jsforce/jsforce-node": "^3.1.0",
