@@ -14,7 +14,7 @@ export type KgoSourceReadResult = void;
 
 export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
   public static readonly summary = messages.getMessage('summary');
-  // public static readonly description = messages.getMessage('description');
+  public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {

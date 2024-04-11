@@ -41,7 +41,7 @@ const altTableOptions: Ux.Table.Options = { sort: 'pctCoverage,-numLocations,nam
 
 export default class KgoDeployListCoverage extends SfCommand<KgoDeployListCoverageResult> {
   public static readonly summary = messages.getMessage('summary');
-  // public static readonly description = messages.getMessage('description');
+  public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly aliases = ['kgo:deploy:ListApexCoverage'];
   public static readonly hiddenAliases = ['kgo:deploy:ListApexCoverage'];

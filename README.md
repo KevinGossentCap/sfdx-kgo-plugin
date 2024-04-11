@@ -123,7 +123,7 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [--json] [-p]
+  $ sf kgo deploy ListApexCoverage -o <value> -i <value> [--json] [--flags-dir <value>] [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
@@ -132,12 +132,8 @@ FLAGS
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
 
 GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
-
-  undefined
+  --flags-dir=<value>  Import flag values from a directory.
+  --json               Format output as json.
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -152,7 +148,7 @@ Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered
 
 ```
 USAGE
-  $ sf kgo deploy listCoverage -o <value> -i <value> [--json] [-p]
+  $ sf kgo deploy listCoverage -o <value> -i <value> [--json] [--flags-dir <value>] [-p]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
@@ -161,12 +157,8 @@ FLAGS
   -p, --sort-pct            Sort by coverage percentage ascending then number of lines desc.
 
 GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
-
-  undefined
+  --flags-dir=<value>  Import flag values from a directory.
+  --json               Format output as json.
 
 ALIASES
   $ sf kgo deploy ListApexCoverage
@@ -175,7 +167,7 @@ EXAMPLES
   $ sf kgo deploy listCoverage
 ```
 
-_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.4/src/commands/kgo/deploy/listCoverage.ts)_
+_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/deploy/listCoverage.ts)_
 
 ## `sf kgo deploy result`
 
@@ -183,7 +175,7 @@ Fast get deploy result, statistics and error list.
 
 ```
 USAGE
-  $ sf kgo deploy result -o <value> -i <value> [--json]
+  $ sf kgo deploy result -o <value> -i <value> [--json] [--flags-dir <value>]
 
 FLAGS
   -i, --job-id=<value>      (required) Job ID of the deploy operation you want to check the status of.
@@ -191,18 +183,14 @@ FLAGS
                             org. Not required if the `target-org` configuration variable is already set.
 
 GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Fast get deploy result, statistics and error list.
-
-  undefined
+  --flags-dir=<value>  Import flag values from a directory.
+  --json               Format output as json.
 
 EXAMPLES
   $ sf kgo deploy result
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.4/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/deploy/result.ts)_
 
 ## `sf kgo limits`
 
@@ -210,7 +198,7 @@ Get filtered and formated limits from API.
 
 ```
 USAGE
-  $ sf kgo limits -o <value> [--json] [-l <value>]
+  $ sf kgo limits -o <value> [--json] [--flags-dir <value>] [-l <value>]
 
 FLAGS
   -l, --limits=<value>...   Optionnal list of limits to show.
@@ -218,18 +206,14 @@ FLAGS
                             org. Not required if the `target-org` configuration variable is already set.
 
 GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Get filtered and formated limits from API.
-
-  undefined
+  --flags-dir=<value>  Import flag values from a directory.
+  --json               Format output as json.
 
 EXAMPLES
   $ sf kgo limits
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.4/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/limits.ts)_
 
 ## `sf kgo source read`
 
@@ -237,7 +221,7 @@ Read Metadata using the CRUD Metadata API.
 
 ```
 USAGE
-  $ sf kgo source read -o <value> [--json] [-m <value>] [-d <value>]
+  $ sf kgo source read -o <value> [--json] [--flags-dir <value>] [-m <value>] [-d <value>]
 
 FLAGS
   -d, --source-dir=<value>...  File paths for source to retrieve from the org.
@@ -247,12 +231,8 @@ FLAGS
                                target org. Not required if the `target-org` configuration variable is already set.
 
 GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Read Metadata using the CRUD Metadata API.
-
-  undefined
+  --flags-dir=<value>  Import flag values from a directory.
+  --json               Format output as json.
 
 EXAMPLES
   $ sf kgo source read -m "Profile:Admin"
@@ -262,6 +242,6 @@ EXAMPLES
   $ sf kgo source read -p force-app/main/default/objects/Account/recordTypes/Business.recordType-meta.xml
 ```
 
-_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.4/src/commands/kgo/source/read.ts)_
+_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/source/read.ts)_
 
 <!-- commandsstop -->
