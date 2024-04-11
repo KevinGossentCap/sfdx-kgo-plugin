@@ -177,7 +177,7 @@ EXAMPLES
   $ sf kgo deploy listCoverage
 ```
 
-_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/deploy/listCoverage.ts)_
+_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.7/src/commands/kgo/deploy/listCoverage.ts)_
 
 ## `sf kgo deploy result`
 
@@ -205,7 +205,7 @@ EXAMPLES
   $ sf kgo deploy result
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.7/src/commands/kgo/deploy/result.ts)_
 
 ## `sf kgo limits`
 
@@ -233,7 +233,7 @@ EXAMPLES
   $ sf kgo limits
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.7/src/commands/kgo/limits.ts)_
 
 ## `sf kgo source read`
 
@@ -267,6 +267,6 @@ EXAMPLES
   $ sf kgo source read -p force-app/main/default/objects/Account/recordTypes/Business.recordType-meta.xml
 ```
 
-_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/source/read.ts)_
+_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.7/src/commands/kgo/source/read.ts)_
 
 <!-- commandsstop -->
