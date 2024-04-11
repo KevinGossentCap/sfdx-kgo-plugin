@@ -135,6 +135,11 @@ GLOBAL FLAGS
   --flags-dir=<value>  Import flag values from a directory.
   --json               Format output as json.
 
+DESCRIPTION
+  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
+
+  More information about a command. Don't repeat the summary.
+
 ALIASES
   $ sf kgo deploy ListApexCoverage
 
@@ -160,6 +165,11 @@ GLOBAL FLAGS
   --flags-dir=<value>  Import flag values from a directory.
   --json               Format output as json.
 
+DESCRIPTION
+  Fast get deploy Apex and Flow Coverage details, defaults to ordered by uncovered desc then number of lines desc.
+
+  More information about a command. Don't repeat the summary.
+
 ALIASES
   $ sf kgo deploy ListApexCoverage
 
@@ -167,7 +177,7 @@ EXAMPLES
   $ sf kgo deploy listCoverage
 ```
 
-_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/deploy/listCoverage.ts)_
+_See code: [src/commands/kgo/deploy/listCoverage.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/deploy/listCoverage.ts)_
 
 ## `sf kgo deploy result`
 
@@ -186,11 +196,16 @@ GLOBAL FLAGS
   --flags-dir=<value>  Import flag values from a directory.
   --json               Format output as json.
 
+DESCRIPTION
+  Fast get deploy result, statistics and error list.
+
+  More information about a command. Don't repeat the summary.
+
 EXAMPLES
   $ sf kgo deploy result
 ```
 
-_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/deploy/result.ts)_
+_See code: [src/commands/kgo/deploy/result.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/deploy/result.ts)_
 
 ## `sf kgo limits`
 
@@ -209,11 +224,16 @@ GLOBAL FLAGS
   --flags-dir=<value>  Import flag values from a directory.
   --json               Format output as json.
 
+DESCRIPTION
+  Get filtered and formated limits from API.
+
+  More information about a command. Don't repeat the summary.
+
 EXAMPLES
   $ sf kgo limits
 ```
 
-_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/limits.ts)_
+_See code: [src/commands/kgo/limits.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/limits.ts)_
 
 ## `sf kgo source read`
 
@@ -234,6 +254,11 @@ GLOBAL FLAGS
   --flags-dir=<value>  Import flag values from a directory.
   --json               Format output as json.
 
+DESCRIPTION
+  Read Metadata using the CRUD Metadata API.
+
+  More information about a command. Don't repeat the summary.
+
 EXAMPLES
   $ sf kgo source read -m "Profile:Admin"
 
@@ -242,6 +267,6 @@ EXAMPLES
   $ sf kgo source read -p force-app/main/default/objects/Account/recordTypes/Business.recordType-meta.xml
 ```
 
-_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.5/src/commands/kgo/source/read.ts)_
+_See code: [src/commands/kgo/source/read.ts](https://github.com/KevinGossentCap/sfdx-kgo-plugin/blob/v1.4.6/src/commands/kgo/source/read.ts)_
 
 <!-- commandsstop -->
