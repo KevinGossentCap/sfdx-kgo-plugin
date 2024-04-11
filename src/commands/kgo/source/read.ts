@@ -6,7 +6,7 @@ import { ComponentSetBuilder, MetadataComponent, SourceComponent } from '@salesf
 import { filePathsFromMetadataComponent } from '@salesforce/source-deploy-retrieve/lib/src/utils/filePathGenerator.js';
 import { Metadata, MetadataType, MetadataDefinition } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import { Builder } from 'xml2js';
-import { XMLBuilder } from 'fast-xml-parser';
+// import { XMLBuilder } from 'fast-xml-parser';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('sfdx-kgo-plugin', 'kgo.source.read');
@@ -64,7 +64,7 @@ export default class KgoSourceRead extends SfCommand<KgoSourceReadResult> {
         );
         mkdirSync(dirname(filePath as string), { recursive: true });
       }
-      writeFileSync(filePath as string, fastConvertToXml(component, mdJson));
+      writeFileSync(filePath as string, convertToXml(component, mdJson));
     }
 
     return;
@@ -111,27 +111,27 @@ export function convertToXml(component: MetadataComponent | SourceComponent, dat
     }) + '\n'
   );
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function fastConvertToXml(component: MetadataComponent | SourceComponent, data: any): string {
-  if (['CustomObject', 'Workflow'].includes('' + component.parent?.type?.name)) {
-    // remove first part of fullName separated by dot
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    data.fullName = component.fullName.split('.')[1];
-  } else {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete data.fullName;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, no-param-reassign
-  data['@_xmlns'] = 'http://soap.sforce.com/2006/04/metadata';
-  const options = {
-    processEntities: false,
-    format: true,
-    ignoreAttributes: false,
-    // preserveOrder: true,
-    textNodeName: '_',
-    indentBy: ' '.repeat(4),
-  };
-  const dataString = '{"?xml": {"@_version": "1.0", "@_encoding": "UTF-8"},"' + component.type.name + '":' + data + '}';
-  const builder = new XMLBuilder(options);
-  return builder.build(dataString) + '\n';
-}
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// export function fastConvertToXml(component: MetadataComponent | SourceComponent, data: any): string {
+//   if (['CustomObject', 'Workflow'].includes('' + component.parent?.type?.name)) {
+//     // remove first part of fullName separated by dot
+//     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+//     data.fullName = component.fullName.split('.')[1];
+//   } else {
+//     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+//     delete data.fullName;
+//   }
+//   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, no-param-reassign
+//   data['@_xmlns'] = 'http://soap.sforce.com/2006/04/metadata';
+//   const options = {
+//     processEntities: false,
+//     format: true,
+//     ignoreAttributes: false,
+//     // preserveOrder: true,
+//     textNodeName: '_',
+//     indentBy: ' '.repeat(4),
+//   };
+//   const dataString = '{"?xml": {"@_version": "1.0", "@_encoding": "UTF-8"},"' + component.type.name + '":' + data + '}';
+//   const builder = new XMLBuilder(options);
+//   return builder.build(dataString) + '\n';
+// }
